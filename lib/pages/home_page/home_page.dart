@@ -11,7 +11,9 @@ class HomePage extends HookConsumerWidget {
     final loading = ref.watch(homePageProvider.select((s) => s.loading));
     final message = ref.watch(homePageProvider.select((s) => s.message));
     return Scaffold(
+      backgroundColor: Theme.of(context).colorScheme.surface,
       appBar: AppBar(
+        backgroundColor: Theme.of(context).colorScheme.surface,
         title: Text("R E P O S I T O R Y"),
       ),
       body: Column(
@@ -33,7 +35,7 @@ class HomePage extends HookConsumerWidget {
           child: Container(
             decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(12),
-                color: Colors.grey.shade100),
+                color: Theme.of(context).colorScheme.primary),
             child: Row(
               children: [
                 SizedBox(
@@ -92,15 +94,20 @@ class HomePage extends HookConsumerWidget {
           ),
         );
       },
-      child: Container(
-        height: 60,
-        width: double.infinity,
-        padding: const EdgeInsets.all(8.0),
-        child: Row(
-          children: [
-            const SizedBox(width: 10),
-            Text(repository.name),
-          ],
+      child: Padding(
+        padding: const EdgeInsets.only(left: 16, right: 16, top: 8),
+        child: Container(
+          height: 60,
+          width: double.infinity,
+          decoration:
+              BoxDecoration(color: Theme.of(context).colorScheme.primary),
+          padding: const EdgeInsets.all(8.0),
+          child: Row(
+            children: [
+              const SizedBox(width: 10),
+              Text(repository.name),
+            ],
+          ),
         ),
       ),
     );
