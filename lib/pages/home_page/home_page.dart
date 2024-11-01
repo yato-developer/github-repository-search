@@ -41,12 +41,17 @@ class HomePage extends HookConsumerWidget {
                 SizedBox(
                   width: 10,
                 ),
+                Icon(Icons.search),
+                SizedBox(
+                  width: 10,
+                ),
                 Expanded(
                   child: TextField(
+                    cursorColor: Colors.grey,
                     controller: controller,
                     decoration: const InputDecoration(
                       border: InputBorder.none,
-                      hintText: "検索",
+                      hintText: " 検索",
                     ),
                     onSubmitted: (String value) {
                       ref
@@ -84,8 +89,10 @@ class HomePage extends HookConsumerWidget {
     });
   }
 
-  Widget _buildRepositoryItemContainer(
-      {required repository, required context}) {
+  Widget _buildRepositoryItemContainer({
+    required repository,
+    required BuildContext context,
+  }) {
     return GestureDetector(
       onTap: () {
         Navigator.of(context).push(
@@ -95,17 +102,90 @@ class HomePage extends HookConsumerWidget {
         );
       },
       child: Padding(
-        padding: const EdgeInsets.only(left: 16, right: 16, top: 8),
+        padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
         child: Container(
-          height: 60,
-          width: double.infinity,
-          decoration:
-              BoxDecoration(color: Theme.of(context).colorScheme.primary),
-          padding: const EdgeInsets.all(8.0),
+          decoration: BoxDecoration(
+            color: Theme.of(context).colorScheme.primary,
+            borderRadius: BorderRadius.circular(12),
+            boxShadow: [
+              BoxShadow(
+                color: Colors.black.withOpacity(0.1),
+                blurRadius: 6,
+                offset: Offset(0, 4),
+              ),
+            ],
+          ),
+          padding: const EdgeInsets.all(16),
           child: Row(
             children: [
-              const SizedBox(width: 10),
-              Text(repository.name),
+              Expanded(
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(
+                      repository.name,
+                      style: Theme.of(context).textTheme.titleMedium?.copyWith(
+                            fontWeight: FontWeight.bold,
+                            color: Theme.of(context).colorScheme.onSurface,
+                          ),
+                      overflow: TextOverflow.ellipsis,
+                    ),
+                    const SizedBox(height: 8),
+                    Row(
+                      children: [
+                        Icon(
+                          Icons.star,
+                          size: 16,
+                          color: Colors.amber,
+                        ),
+                        const SizedBox(width: 4),
+                        Text(
+                          '${repository.stargazers_count}',
+                          style: Theme.of(context).textTheme.bodySmall,
+                        ),
+                        const SizedBox(width: 12),
+                        Icon(
+                          Icons.visibility,
+                          size: 16,
+                          color: Colors.blueGrey,
+                        ),
+                        const SizedBox(width: 4),
+                        Text(
+                          '${repository.watchers_count}',
+                          style: Theme.of(context).textTheme.bodySmall,
+                        ),
+                        const SizedBox(width: 12),
+                        Icon(
+                          Icons.call_split,
+                          size: 16,
+                          color: Colors.green,
+                        ),
+                        const SizedBox(width: 4),
+                        Text(
+                          '${repository.forks_count}',
+                          style: Theme.of(context).textTheme.bodySmall,
+                        ),
+                        const SizedBox(width: 12),
+                        Icon(
+                          Icons.bug_report,
+                          size: 16,
+                          color: Colors.redAccent,
+                        ),
+                        const SizedBox(width: 4),
+                        Text(
+                          '${repository.open_issues_count}',
+                          style: Theme.of(context).textTheme.bodySmall,
+                        ),
+                      ],
+                    ),
+                  ],
+                ),
+              ),
+              Icon(
+                Icons.arrow_forward_ios,
+                size: 16,
+                color: Theme.of(context).colorScheme.onSurface.withOpacity(0.6),
+              ),
             ],
           ),
         ),
