@@ -1,10 +1,14 @@
 import 'package:flutter/material.dart';
+import 'package:github_repository_search/pages/home_page/home_page_controller.dart';
+import 'package:hooks_riverpod/hooks_riverpod.dart';
 
-class HomePage extends StatelessWidget {
+class HomePage extends HookConsumerWidget {
   const HomePage({super.key});
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
+    final loading = ref.watch(homePageProvider.select((s) => s.loading));
+    final message = ref.watch(homePageProvider.select((s) => s.message));
     return Scaffold(
       appBar: AppBar(
         title: Text("R E P O S I T O R Y"),
@@ -12,54 +16,72 @@ class HomePage extends StatelessWidget {
       body: Column(
         children: [
           _buildSearchTextField(),
-          _buildRepositoryList(),
+          message == "" ? SizedBox() : _buildMessageText(message: message),
+          loading ? _buildLoadingIndicator() : _buildRepositoryList(),
         ],
       ),
     );
   }
 
   Widget _buildSearchTextField() {
-    return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 16.0),
-      child: Container(
-        decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(12),
-            color: Colors.grey.shade100),
-        child: Row(
-          children: [
-            SizedBox(
-              width: 10,
-            ),
-            Expanded(
-              child: TextField(
-                decoration: const InputDecoration(
-                  border: InputBorder.none,
-                  hintText: "検索",
+    return Consumer(
+      builder: (context, ref, child) {
+        final controller = TextEditingController();
+        return Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 16.0),
+          child: Container(
+            decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(12),
+                color: Colors.grey.shade100),
+            child: Row(
+              children: [
+                SizedBox(
+                  width: 10,
                 ),
-                onSubmitted: (String value) {},
-              ),
+                Expanded(
+                  child: TextField(
+                    controller: controller,
+                    decoration: const InputDecoration(
+                      border: InputBorder.none,
+                      hintText: "検索",
+                    ),
+                    onSubmitted: (String value) {
+                      ref
+                          .watch(homePageProvider.notifier)
+                          .searchRepository(value);
+                    },
+                  ),
+                ),
+                IconButton(
+                  icon: const Icon(Icons.clear),
+                  onPressed: () {
+                    controller.clear();
+                  },
+                ),
+              ],
             ),
-            IconButton(
-              icon: const Icon(Icons.clear),
-              onPressed: () {},
-            ),
-          ],
-        ),
-      ),
+          ),
+        );
+      },
     );
   }
 
   Widget _buildRepositoryList() {
-    return Expanded(
-      child: ListView.builder(
-          itemCount: 10,
-          itemBuilder: (BuildContext context, int index) {
-            return _buildRepositoryItemContainer();
-          }),
-    );
+    return Consumer(builder: (context, ref, child) {
+      final repositorys =
+          ref.watch(homePageProvider.select((s) => s.repositorys));
+      return Expanded(
+        child: ListView.builder(
+            itemCount: repositorys.length,
+            itemBuilder: (BuildContext context, int index) {
+              return _buildRepositoryItemContainer(
+                  repository: repositorys[index]);
+            }),
+      );
+    });
   }
 
-  Widget _buildRepositoryItemContainer() {
+  Widget _buildRepositoryItemContainer({required repository}) {
     return GestureDetector(
       onTap: () {},
       child: Container(
@@ -69,9 +91,21 @@ class HomePage extends StatelessWidget {
         child: Row(
           children: [
             const SizedBox(width: 10),
-            Text("Repository"),
+            Text(repository.name),
           ],
         ),
+      ),
+    );
+  }
+
+  Widget _buildMessageText({required message}) {
+    return Expanded(child: Center(child: Text(message)));
+  }
+
+  Widget _buildLoadingIndicator() {
+    return Expanded(
+      child: Center(
+        child: CircularProgressIndicator(),
       ),
     );
   }
