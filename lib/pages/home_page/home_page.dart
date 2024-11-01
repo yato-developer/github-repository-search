@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:github_repository_search/pages/home_page/home_page_controller.dart';
+import 'package:github_repository_search/pages/repository_detail_page/repository_detail_page.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 class HomePage extends HookConsumerWidget {
@@ -75,15 +76,22 @@ class HomePage extends HookConsumerWidget {
             itemCount: repositorys.length,
             itemBuilder: (BuildContext context, int index) {
               return _buildRepositoryItemContainer(
-                  repository: repositorys[index]);
+                  context: context, repository: repositorys[index]);
             }),
       );
     });
   }
 
-  Widget _buildRepositoryItemContainer({required repository}) {
+  Widget _buildRepositoryItemContainer(
+      {required repository, required context}) {
     return GestureDetector(
-      onTap: () {},
+      onTap: () {
+        Navigator.of(context).push(
+          MaterialPageRoute(
+            builder: (context) => RepositoryDetailPage(repository: repository),
+          ),
+        );
+      },
       child: Container(
         height: 60,
         width: double.infinity,
