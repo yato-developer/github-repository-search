@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:github_repository_search/model/repository.dart';
+import 'package:github_repository_search/model/src/repository.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 

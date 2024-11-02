@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:github_repository_search/model/enums.dart';
 import 'package:github_repository_search/pages/home_page/home_page_controller.dart';
 import 'package:github_repository_search/pages/repository_detail_page/repository_detail_page.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
@@ -10,7 +11,8 @@ class HomePage extends HookConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final loading = ref.watch(homePageProvider.select((s) => s.loading));
-    final message = ref.watch(homePageProvider.select((s) => s.message));
+    final messageType =
+        ref.watch(homePageProvider.select((s) => s.messageType));
     return Scaffold(
       backgroundColor: Theme.of(context).colorScheme.surface,
       appBar: AppBar(
@@ -20,9 +22,9 @@ class HomePage extends HookConsumerWidget {
       body: Column(
         children: [
           _buildSearchTextField(),
-          message == ""
+          messageType == MessageType.none
               ? SizedBox()
-              : _buildMessageText(message: message, context: context),
+              : _buildMessageText(messageType: messageType, context: context),
           loading ? _buildLoadingIndicator() : _buildRepositoryList(),
         ],
       ),
@@ -195,16 +197,21 @@ class HomePage extends HookConsumerWidget {
     );
   }
 
-  Widget _buildMessageText({required message, required context}) {
+  Widget _buildMessageText({required messageType, required context}) {
     return Expanded(
         child: Center(
             child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
+      mainAxisAlignment: MainAxisAlignment.center,
       children: [
-        message == "リポジトリ名を入力してください"
+        messageType == MessageType.enterRepositoryName
             ? Text(AppLocalizations.of(context)!.enterRepositoryName)
             : SizedBox(),
-        message == "リポジトリが見つかりませんでした" ? Text(AppLocalizations.of(context)!.repositoryNotFound) : SizedBox()
+        messageType == MessageType.repositoryNotFound
+            ? Text(AppLocalizations.of(context)!.repositoryNotFound)
+            : SizedBox(),
+                messageType == MessageType.error
+            ? Text(AppLocalizations.of(context)!.repositoryNotFound)
+            : SizedBox()
       ],
     )));
   }
