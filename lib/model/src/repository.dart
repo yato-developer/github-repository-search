@@ -12,6 +12,9 @@ class Repository with _$Repository {
       required int stargazers_count,
       required int forks_count,
       required int open_issues_count,
+      required String html_url,
+      required String description,
+      required DateTime updated_at,
       required Owner owner
       }) = _Repository;
 
