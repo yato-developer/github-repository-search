@@ -25,7 +25,9 @@ class HomePage extends HookConsumerWidget {
           messageType == MessageType.none
               ? SizedBox()
               : _buildMessageText(messageType: messageType, context: context),
-          loading ? _buildLoadingIndicator() : _buildRepositoryList(),
+          loading
+              ? _buildLoadingIndicator(context: context)
+              : _buildRepositoryList(),
         ],
       ),
     );
@@ -55,8 +57,10 @@ class HomePage extends HookConsumerWidget {
                     cursorColor: Colors.grey,
                     controller: controller,
                     decoration: InputDecoration(
-                        border: InputBorder.none,
-                        hintText: AppLocalizations.of(context)!.hintText),
+                      border: InputBorder.none,
+                      hintText: " ${AppLocalizations.of(context)!.hintText}",
+                      hintStyle: TextStyle(color: Colors.grey),
+                    ),
                     onSubmitted: (String value) {
                       ref
                           .watch(homePageProvider.notifier)
@@ -135,8 +139,22 @@ class HomePage extends HookConsumerWidget {
                       overflow: TextOverflow.ellipsis,
                     ),
                     const SizedBox(height: 8),
+                    Text(repository.description, maxLines: 2,),
+                    const SizedBox(height: 8),
                     Row(
                       children: [
+                                                Icon(
+                          Icons.language,
+                          size: 16,
+                          color: Colors.blue,
+                        ),
+                        const SizedBox(width: 4),
+                        Text(
+                          '${repository.language}',
+                          style: Theme.of(context).textTheme.bodySmall,
+                        ),
+                        const SizedBox(width: 12),
+
                         Icon(
                           Icons.star,
                           size: 16,
@@ -159,27 +177,7 @@ class HomePage extends HookConsumerWidget {
                           style: Theme.of(context).textTheme.bodySmall,
                         ),
                         const SizedBox(width: 12),
-                        Icon(
-                          Icons.call_split,
-                          size: 16,
-                          color: Colors.green,
-                        ),
-                        const SizedBox(width: 4),
-                        Text(
-                          '${repository.forks_count}',
-                          style: Theme.of(context).textTheme.bodySmall,
-                        ),
-                        const SizedBox(width: 12),
-                        Icon(
-                          Icons.bug_report,
-                          size: 16,
-                          color: Colors.redAccent,
-                        ),
-                        const SizedBox(width: 4),
-                        Text(
-                          '${repository.open_issues_count}',
-                          style: Theme.of(context).textTheme.bodySmall,
-                        ),
+
                       ],
                     ),
                   ],
@@ -209,17 +207,19 @@ class HomePage extends HookConsumerWidget {
         messageType == MessageType.repositoryNotFound
             ? Text(AppLocalizations.of(context)!.repositoryNotFound)
             : SizedBox(),
-                messageType == MessageType.error
+        messageType == MessageType.error
             ? Text(AppLocalizations.of(context)!.repositoryNotFound)
             : SizedBox()
       ],
     )));
   }
 
-  Widget _buildLoadingIndicator() {
+  Widget _buildLoadingIndicator({required context}) {
     return Expanded(
       child: Center(
-        child: CircularProgressIndicator(),
+        child: CircularProgressIndicator(
+          color: Theme.of(context).colorScheme.secondary,
+        ),
       ),
     );
   }

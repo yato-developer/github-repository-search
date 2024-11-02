@@ -25,9 +25,10 @@ mixin _$Repository {
   int get watchers_count => throw _privateConstructorUsedError;
   int get stargazers_count => throw _privateConstructorUsedError;
   int get forks_count => throw _privateConstructorUsedError;
-  int get open_issues_count => throw _privateConstructorUsedError; //html_url
-//description
-//updated_at
+  int get open_issues_count => throw _privateConstructorUsedError;
+  String get html_url => throw _privateConstructorUsedError;
+  String get description => throw _privateConstructorUsedError;
+  DateTime get updated_at => throw _privateConstructorUsedError;
   Owner get owner => throw _privateConstructorUsedError;
 
   /// Serializes this Repository to a JSON map.
@@ -53,6 +54,9 @@ abstract class $RepositoryCopyWith<$Res> {
       int stargazers_count,
       int forks_count,
       int open_issues_count,
+      String html_url,
+      String description,
+      DateTime updated_at,
       Owner owner});
 
   $OwnerCopyWith<$Res> get owner;
@@ -79,6 +83,9 @@ class _$RepositoryCopyWithImpl<$Res, $Val extends Repository>
     Object? stargazers_count = null,
     Object? forks_count = null,
     Object? open_issues_count = null,
+    Object? html_url = null,
+    Object? description = null,
+    Object? updated_at = null,
     Object? owner = null,
   }) {
     return _then(_value.copyWith(
@@ -106,6 +113,18 @@ class _$RepositoryCopyWithImpl<$Res, $Val extends Repository>
           ? _value.open_issues_count
           : open_issues_count // ignore: cast_nullable_to_non_nullable
               as int,
+      html_url: null == html_url
+          ? _value.html_url
+          : html_url // ignore: cast_nullable_to_non_nullable
+              as String,
+      description: null == description
+          ? _value.description
+          : description // ignore: cast_nullable_to_non_nullable
+              as String,
+      updated_at: null == updated_at
+          ? _value.updated_at
+          : updated_at // ignore: cast_nullable_to_non_nullable
+              as DateTime,
       owner: null == owner
           ? _value.owner
           : owner // ignore: cast_nullable_to_non_nullable
@@ -139,6 +158,9 @@ abstract class _$$RepositoryImplCopyWith<$Res>
       int stargazers_count,
       int forks_count,
       int open_issues_count,
+      String html_url,
+      String description,
+      DateTime updated_at,
       Owner owner});
 
   @override
@@ -164,6 +186,9 @@ class __$$RepositoryImplCopyWithImpl<$Res>
     Object? stargazers_count = null,
     Object? forks_count = null,
     Object? open_issues_count = null,
+    Object? html_url = null,
+    Object? description = null,
+    Object? updated_at = null,
     Object? owner = null,
   }) {
     return _then(_$RepositoryImpl(
@@ -191,6 +216,18 @@ class __$$RepositoryImplCopyWithImpl<$Res>
           ? _value.open_issues_count
           : open_issues_count // ignore: cast_nullable_to_non_nullable
               as int,
+      html_url: null == html_url
+          ? _value.html_url
+          : html_url // ignore: cast_nullable_to_non_nullable
+              as String,
+      description: null == description
+          ? _value.description
+          : description // ignore: cast_nullable_to_non_nullable
+              as String,
+      updated_at: null == updated_at
+          ? _value.updated_at
+          : updated_at // ignore: cast_nullable_to_non_nullable
+              as DateTime,
       owner: null == owner
           ? _value.owner
           : owner // ignore: cast_nullable_to_non_nullable
@@ -209,6 +246,9 @@ class _$RepositoryImpl implements _Repository {
       required this.stargazers_count,
       required this.forks_count,
       required this.open_issues_count,
+      required this.html_url,
+      required this.description,
+      required this.updated_at,
       required this.owner});
 
   factory _$RepositoryImpl.fromJson(Map<String, dynamic> json) =>
@@ -227,15 +267,18 @@ class _$RepositoryImpl implements _Repository {
   final int forks_count;
   @override
   final int open_issues_count;
-//html_url
-//description
-//updated_at
+  @override
+  final String html_url;
+  @override
+  final String description;
+  @override
+  final DateTime updated_at;
   @override
   final Owner owner;
 
   @override
   String toString() {
-    return 'Repository(name: $name, language: $language, watchers_count: $watchers_count, stargazers_count: $stargazers_count, forks_count: $forks_count, open_issues_count: $open_issues_count, owner: $owner)';
+    return 'Repository(name: $name, language: $language, watchers_count: $watchers_count, stargazers_count: $stargazers_count, forks_count: $forks_count, open_issues_count: $open_issues_count, html_url: $html_url, description: $description, updated_at: $updated_at, owner: $owner)';
   }
 
   @override
@@ -254,13 +297,29 @@ class _$RepositoryImpl implements _Repository {
                 other.forks_count == forks_count) &&
             (identical(other.open_issues_count, open_issues_count) ||
                 other.open_issues_count == open_issues_count) &&
+            (identical(other.html_url, html_url) ||
+                other.html_url == html_url) &&
+            (identical(other.description, description) ||
+                other.description == description) &&
+            (identical(other.updated_at, updated_at) ||
+                other.updated_at == updated_at) &&
             (identical(other.owner, owner) || other.owner == owner));
   }
 
   @JsonKey(includeFromJson: false, includeToJson: false)
   @override
-  int get hashCode => Object.hash(runtimeType, name, language, watchers_count,
-      stargazers_count, forks_count, open_issues_count, owner);
+  int get hashCode => Object.hash(
+      runtimeType,
+      name,
+      language,
+      watchers_count,
+      stargazers_count,
+      forks_count,
+      open_issues_count,
+      html_url,
+      description,
+      updated_at,
+      owner);
 
   /// Create a copy of Repository
   /// with the given fields replaced by the non-null parameter values.
@@ -286,6 +345,9 @@ abstract class _Repository implements Repository {
       required final int stargazers_count,
       required final int forks_count,
       required final int open_issues_count,
+      required final String html_url,
+      required final String description,
+      required final DateTime updated_at,
       required final Owner owner}) = _$RepositoryImpl;
 
   factory _Repository.fromJson(Map<String, dynamic> json) =
@@ -302,9 +364,13 @@ abstract class _Repository implements Repository {
   @override
   int get forks_count;
   @override
-  int get open_issues_count; //html_url
-//description
-//updated_at
+  int get open_issues_count;
+  @override
+  String get html_url;
+  @override
+  String get description;
+  @override
+  DateTime get updated_at;
   @override
   Owner get owner;
 
