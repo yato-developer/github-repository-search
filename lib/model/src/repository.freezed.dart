@@ -25,7 +25,9 @@ mixin _$Repository {
   int get watchers_count => throw _privateConstructorUsedError;
   int get stargazers_count => throw _privateConstructorUsedError;
   int get forks_count => throw _privateConstructorUsedError;
-  int get open_issues_count => throw _privateConstructorUsedError;
+  int get open_issues_count => throw _privateConstructorUsedError; //html_url
+//description
+//updated_at
   Owner get owner => throw _privateConstructorUsedError;
 
   /// Serializes this Repository to a JSON map.
@@ -225,6 +227,9 @@ class _$RepositoryImpl implements _Repository {
   final int forks_count;
   @override
   final int open_issues_count;
+//html_url
+//description
+//updated_at
   @override
   final Owner owner;
 
@@ -297,7 +302,9 @@ abstract class _Repository implements Repository {
   @override
   int get forks_count;
   @override
-  int get open_issues_count;
+  int get open_issues_count; //html_url
+//description
+//updated_at
   @override
   Owner get owner;
 

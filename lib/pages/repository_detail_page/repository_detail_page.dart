@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:github_repository_search/model/repository.dart';
+import 'package:github_repository_search/model/src/repository.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+
 
 class RepositoryDetailPage extends StatelessWidget {
   final Repository repository;
@@ -10,7 +12,7 @@ class RepositoryDetailPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("リポジトリ詳細"),
+        title: Text(AppLocalizations.of(context)!.repositoryDetail),
         centerTitle: true,
       ),
       body: Padding(
