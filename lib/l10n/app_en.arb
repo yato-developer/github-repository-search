@@ -1,0 +1,8 @@
+{
+  "@@locale": "en",
+  
+  "hintText": "Search",
+  "enterRepositoryName": "Please enter the repository name",
+  "repositoryNotFound": "Repository not found",
+  "repositoryDetail": "Repository Detail"
+}

@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:github_repository_search/pages/home_page/home_page_controller.dart';
 import 'package:github_repository_search/pages/repository_detail_page/repository_detail_page.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class HomePage extends HookConsumerWidget {
   const HomePage({super.key});
@@ -19,7 +20,9 @@ class HomePage extends HookConsumerWidget {
       body: Column(
         children: [
           _buildSearchTextField(),
-          message == "" ? SizedBox() : _buildMessageText(message: message),
+          message == ""
+              ? SizedBox()
+              : _buildMessageText(message: message, context: context),
           loading ? _buildLoadingIndicator() : _buildRepositoryList(),
         ],
       ),
@@ -49,10 +52,9 @@ class HomePage extends HookConsumerWidget {
                   child: TextField(
                     cursorColor: Colors.grey,
                     controller: controller,
-                    decoration: const InputDecoration(
-                      border: InputBorder.none,
-                      hintText: " 検索",
-                    ),
+                    decoration: InputDecoration(
+                        border: InputBorder.none,
+                        hintText: AppLocalizations.of(context)!.hintText),
                     onSubmitted: (String value) {
                       ref
                           .watch(homePageProvider.notifier)
@@ -193,8 +195,18 @@ class HomePage extends HookConsumerWidget {
     );
   }
 
-  Widget _buildMessageText({required message}) {
-    return Expanded(child: Center(child: Text(message)));
+  Widget _buildMessageText({required message, required context}) {
+    return Expanded(
+        child: Center(
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+      children: [
+        message == "リポジトリ名を入力してください"
+            ? Text(AppLocalizations.of(context)!.enterRepositoryName)
+            : SizedBox(),
+        message == "リポジトリが見つかりませんでした" ? Text(AppLocalizations.of(context)!.repositoryNotFound) : SizedBox()
+      ],
+    )));
   }
 
   Widget _buildLoadingIndicator() {
