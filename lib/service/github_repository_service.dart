@@ -1,6 +1,6 @@
 import 'dart:convert';
 import 'package:http/http.dart' as http;
-import 'package:github_repository_search/model/repository.dart';
+import 'package:github_repository_search/model/src/repository.dart';
 
 class GithubRepositoryService {
   final String _baseUrl = 'https://api.github.com/search/repositories';
