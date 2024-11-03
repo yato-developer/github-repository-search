@@ -4,5 +4,6 @@
   "hintText": "検索",
   "enterRepositoryName": "リポジトリ名を入力してください",
   "repositoryNotFound": "リポジトリが見つかりませんでした",
-  "repositoryDetail": "リポジトリ詳細"
+  "repositoryDetail": "リポジトリ詳細",
+  "openGitHub": "GitHubを開く"
 }

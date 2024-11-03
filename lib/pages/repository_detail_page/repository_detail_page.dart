@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:github_repository_search/model/src/repository.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class RepositoryDetailPage extends StatelessWidget {
   final Repository repository;
@@ -25,18 +26,24 @@ class RepositoryDetailPage extends StatelessWidget {
                   children: [
                     CircleAvatar(
                       radius: 45,
-                      backgroundImage: NetworkImage(repository.owner.avatar_url),
+                      backgroundImage:
+                          NetworkImage(repository.owner.avatar_url),
                     ),
                     SizedBox(height: 8),
                     Text(
                       repository.name,
-                      style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
+                      style:
+                          TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
                     ),
                     Text(repository.description),
+                    SizedBox(
+                      height: 10,
+                    ),
+                    _buildOpenRepositoryButton(url: Uri.parse(repository.html_url), context: context),
                   ],
                 ),
               ),
-              SizedBox(height: 20),
+              SizedBox(height: 10),
               Card(
                 color: Theme.of(context).colorScheme.primary,
                 elevation: 2,
@@ -47,7 +54,9 @@ class RepositoryDetailPage extends StatelessWidget {
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
                       Text("Language"),
-                      Text(repository.language == "null" ? "Unknown" : repository.language),
+                      Text(repository.language == "null"
+                          ? "Unknown"
+                          : repository.language),
                     ],
                   ),
                 ),
@@ -118,4 +127,37 @@ class RepositoryDetailPage extends StatelessWidget {
       ),
     );
   }
+
+Widget _buildOpenRepositoryButton({required Uri url, required context}) {
+  return GestureDetector(
+    onTap: () async {
+      if (await canLaunchUrl(url)) {
+        await launchUrl(url);
+      } else {
+        throw 'Could not launch $url';
+      }
+    },
+    child: Container(
+      
+      width: 300, 
+      height: 55, 
+      decoration: BoxDecoration(
+        color:     Theme.of(context).colorScheme.primary,
+
+        borderRadius: BorderRadius.circular(24), 
+      ),
+      child: Center(
+        child: Text(
+          AppLocalizations.of(context)!.openGitHub,
+          style: TextStyle(
+            fontSize: 18,
+            fontWeight: FontWeight.bold,
+            letterSpacing: 1.0,
+          ),
+        ),
+      ),
+    ),
+  );
+}
+
 }
