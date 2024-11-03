@@ -137,6 +137,28 @@ class RepositoryDetailPage extends StatelessWidget {
         if (await canLaunchUrl(url)) {
           await launchUrl(url);
         } else {
+          showDialog(
+            context: context,
+            builder: (BuildContext context) {
+              return AlertDialog(
+                title: Text(AppLocalizations.of(context)!.err),
+                content: Text(AppLocalizations.of(context)!.errMessage),
+                actions: <Widget>[
+                  TextButton(
+                    onPressed: () {
+                      Navigator.of(context).pop();
+                    },
+                    child: Text(
+                      AppLocalizations.of(context)!.close,
+                      style: TextStyle(
+                        color: Theme.of(context).colorScheme.tertiary,
+                      ),
+                    ),
+                  ),
+                ],
+              );
+            },
+          );
           throw 'Could not launch $url';
         }
       },
