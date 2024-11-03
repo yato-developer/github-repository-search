@@ -15,8 +15,7 @@ _$RepositoryImpl _$$RepositoryImplFromJson(Map<String, dynamic> json) =>
       forks_count: (json['forks_count'] as num).toInt(),
       open_issues_count: (json['open_issues_count'] as num).toInt(),
       html_url: json['html_url'] as String,
-      description: json['description'] as String,
-      updated_at: DateTime.parse(json['updated_at'] as String),
+      description: json['description'] as String? ?? "null",
       owner: Owner.fromJson(json['owner'] as Map<String, dynamic>),
     );
 
@@ -30,7 +29,6 @@ Map<String, dynamic> _$$RepositoryImplToJson(_$RepositoryImpl instance) =>
       'open_issues_count': instance.open_issues_count,
       'html_url': instance.html_url,
       'description': instance.description,
-      'updated_at': instance.updated_at.toIso8601String(),
       'owner': instance.owner,
     };
 

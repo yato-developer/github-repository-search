@@ -35,11 +35,14 @@ class RepositoryDetailPage extends StatelessWidget {
                       style:
                           TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
                     ),
-                    Text(repository.description),
+                    repository.description == "null"
+                        ? Text(AppLocalizations.of(context)!.noDescription)
+                        : Text(repository.description),
                     SizedBox(
                       height: 10,
                     ),
-                    _buildOpenRepositoryButton(url: Uri.parse(repository.html_url), context: context),
+                    _buildOpenRepositoryButton(
+                        url: Uri.parse(repository.html_url), context: context),
                   ],
                 ),
               ),
@@ -128,36 +131,33 @@ class RepositoryDetailPage extends StatelessWidget {
     );
   }
 
-Widget _buildOpenRepositoryButton({required Uri url, required context}) {
-  return GestureDetector(
-    onTap: () async {
-      if (await canLaunchUrl(url)) {
-        await launchUrl(url);
-      } else {
-        throw 'Could not launch $url';
-      }
-    },
-    child: Container(
-      
-      width: 300, 
-      height: 55, 
-      decoration: BoxDecoration(
-        color:     Theme.of(context).colorScheme.primary,
-
-        borderRadius: BorderRadius.circular(24), 
-      ),
-      child: Center(
-        child: Text(
-          AppLocalizations.of(context)!.openGitHub,
-          style: TextStyle(
-            fontSize: 18,
-            fontWeight: FontWeight.bold,
-            letterSpacing: 1.0,
+  Widget _buildOpenRepositoryButton({required Uri url, required context}) {
+    return GestureDetector(
+      onTap: () async {
+        if (await canLaunchUrl(url)) {
+          await launchUrl(url);
+        } else {
+          throw 'Could not launch $url';
+        }
+      },
+      child: Container(
+        width: 300,
+        height: 55,
+        decoration: BoxDecoration(
+          color: Theme.of(context).colorScheme.primary,
+          borderRadius: BorderRadius.circular(24),
+        ),
+        child: Center(
+          child: Text(
+            AppLocalizations.of(context)!.openGitHub,
+            style: TextStyle(
+              fontSize: 18,
+              fontWeight: FontWeight.bold,
+              letterSpacing: 1.0,
+            ),
           ),
         ),
       ),
-    ),
-  );
-}
-
+    );
+  }
 }
