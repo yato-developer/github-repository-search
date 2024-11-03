@@ -128,7 +128,9 @@ class HomePage extends HookConsumerWidget {
                     ),
                     const SizedBox(height: 8),
                     Text(
-                      repository.description,
+                      repository.description == "null"
+                          ? AppLocalizations.of(context)!.noDescription
+                          : repository.description,
                       maxLines: 2,
                       overflow: TextOverflow.ellipsis,
                     ),
@@ -138,7 +140,7 @@ class HomePage extends HookConsumerWidget {
                         const Icon(Icons.language,
                             size: 16, color: Colors.blue),
                         const SizedBox(width: 4),
-                        Text(repository.language ?? '',
+                        Text(repository.language == "null" ? "Unknown" : repository.language,
                             style: Theme.of(context).textTheme.bodySmall),
                         const SizedBox(width: 12),
                         const Icon(Icons.star, size: 16, color: Colors.amber),
