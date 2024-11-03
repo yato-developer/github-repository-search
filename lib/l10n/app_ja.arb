@@ -6,5 +6,9 @@
   "repositoryNotFound": "リポジトリが見つかりませんでした",
   "repositoryDetail": "リポジトリ詳細",
   "openGitHub": "GitHubを開く",
-  "noDescription" : "リポジトリの説明がありません"
+  "noDescription" : "リポジトリの説明がありません",
+  "err": "エラー",
+  "errMessage": "URLを開けませんでした。",
+  "close": "閉じる"
+
 }

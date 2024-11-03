@@ -6,5 +6,8 @@
   "repositoryNotFound": "Repository not found",
   "repositoryDetail": "Repository Detail",
   "openGitHub": "Open GitHub",
-  "noDescription"  :"No repository description"
+  "noDescription"  :"No repository description",
+  "err": "Error",
+  "errMessage": "The URL could not be opened.",
+  "close": "Close"
 }
