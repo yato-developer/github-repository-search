@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:github_repository_search/model/enums.dart';
 import 'package:github_repository_search/pages/home_page/home_page_controller.dart';
 import 'package:github_repository_search/pages/repository_detail_page/repository_detail_page.dart';
@@ -13,6 +14,8 @@ class HomePage extends HookConsumerWidget {
     final loading = ref.watch(homePageProvider.select((s) => s.loading));
     final messageType =
         ref.watch(homePageProvider.select((s) => s.messageType));
+    final controller = useTextEditingController();
+
     return Scaffold(
       backgroundColor: Theme.of(context).colorScheme.surface,
       appBar: AppBar(
@@ -21,85 +24,70 @@ class HomePage extends HookConsumerWidget {
       ),
       body: Column(
         children: [
-          _buildSearchTextField(),
-          messageType == MessageType.none
-              ? SizedBox()
-              : _buildMessageText(messageType: messageType, context: context),
-          loading
-              ? _buildLoadingIndicator(context: context)
-              : _buildRepositoryList(),
+          _buildSearchTextField(controller, ref, context),
+          if (messageType != MessageType.none)
+            _buildMessageText(messageType: messageType, context: context),
+          loading ? _buildLoadingIndicator(context) : _buildRepositoryList(ref),
         ],
       ),
     );
   }
 
-  Widget _buildSearchTextField() {
-    return Consumer(
-      builder: (context, ref, child) {
-        final controller = TextEditingController();
-        return Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 16.0),
-          child: Container(
-            decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(12),
-                color: Theme.of(context).colorScheme.primary),
-            child: Row(
-              children: [
-                SizedBox(
-                  width: 10,
+  Widget _buildSearchTextField(
+      TextEditingController controller, WidgetRef ref, BuildContext context) {
+    return Padding(
+      padding: const EdgeInsets.symmetric(horizontal: 16.0),
+      child: Container(
+        decoration: BoxDecoration(
+          borderRadius: BorderRadius.circular(12),
+          color: Theme.of(context).colorScheme.primary,
+        ),
+        child: Row(
+          children: [
+            const SizedBox(width: 10),
+            const Icon(Icons.search),
+            const SizedBox(width: 10),
+            Expanded(
+              child: TextField(
+                cursorColor: Colors.grey,
+                controller: controller,
+                decoration: InputDecoration(
+                  border: InputBorder.none,
+                  hintText: " ${AppLocalizations.of(context)!.hintText}",
+                  hintStyle: const TextStyle(color: Colors.grey),
                 ),
-                Icon(Icons.search),
-                SizedBox(
-                  width: 10,
-                ),
-                Expanded(
-                  child: TextField(
-                    cursorColor: Colors.grey,
-                    controller: controller,
-                    decoration: InputDecoration(
-                      border: InputBorder.none,
-                      hintText: " ${AppLocalizations.of(context)!.hintText}",
-                      hintStyle: TextStyle(color: Colors.grey),
-                    ),
-                    onSubmitted: (String value) {
-                      ref
-                          .watch(homePageProvider.notifier)
-                          .searchRepository(value);
-                    },
-                  ),
-                ),
-                IconButton(
-                  icon: const Icon(Icons.clear),
-                  onPressed: () {
-                    controller.clear();
-                  },
-                ),
-              ],
+                onSubmitted: (value) {
+                  ref.read(homePageProvider.notifier).searchRepository(value);
+                },
+              ),
             ),
-          ),
-        );
-      },
+            IconButton(
+              icon: const Icon(Icons.clear),
+              onPressed: controller.clear,
+            ),
+          ],
+        ),
+      ),
     );
   }
 
-  Widget _buildRepositoryList() {
-    return Consumer(builder: (context, ref, child) {
-      final repositorys =
-          ref.watch(homePageProvider.select((s) => s.repositorys));
-      return Expanded(
-        child: ListView.builder(
-            itemCount: repositorys.length,
-            itemBuilder: (BuildContext context, int index) {
-              return _buildRepositoryItemContainer(
-                  context: context, repository: repositorys[index]);
-            }),
-      );
-    });
+  Widget _buildRepositoryList(WidgetRef ref) {
+    final repositories =
+        ref.watch(homePageProvider.select((s) => s.repositorys));
+    return Expanded(
+      child: ListView.builder(
+        itemCount: repositories.length,
+        itemBuilder: (context, index) {
+          return _buildRepositoryItemContainer(
+              context: context, repository: repositories[index]);
+        },
+      ),
+    );
   }
 
   Widget _buildRepositoryItemContainer({
-    required repository,
     required BuildContext context,
+    required repository,
   }) {
     return GestureDetector(
       onTap: () {
@@ -119,7 +107,7 @@ class HomePage extends HookConsumerWidget {
               BoxShadow(
                 color: Colors.black.withOpacity(0.1),
                 blurRadius: 6,
-                offset: Offset(0, 4),
+                offset: const Offset(0, 4),
               ),
             ],
           ),
@@ -139,55 +127,39 @@ class HomePage extends HookConsumerWidget {
                       overflow: TextOverflow.ellipsis,
                     ),
                     const SizedBox(height: 8),
-                    Text(repository.description, maxLines: 2,),
+                    Text(
+                      repository.description,
+                      maxLines: 2,
+                      overflow: TextOverflow.ellipsis,
+                    ),
                     const SizedBox(height: 8),
                     Row(
                       children: [
-                                                Icon(
-                          Icons.language,
-                          size: 16,
-                          color: Colors.blue,
-                        ),
+                        const Icon(Icons.language,
+                            size: 16, color: Colors.blue),
                         const SizedBox(width: 4),
-                        Text(
-                          '${repository.language}',
-                          style: Theme.of(context).textTheme.bodySmall,
-                        ),
+                        Text(repository.language ?? '',
+                            style: Theme.of(context).textTheme.bodySmall),
                         const SizedBox(width: 12),
-
-                        Icon(
-                          Icons.star,
-                          size: 16,
-                          color: Colors.amber,
-                        ),
+                        const Icon(Icons.star, size: 16, color: Colors.amber),
                         const SizedBox(width: 4),
-                        Text(
-                          '${repository.stargazers_count}',
-                          style: Theme.of(context).textTheme.bodySmall,
-                        ),
+                        Text(repository.stargazers_count.toString(),
+                            style: Theme.of(context).textTheme.bodySmall),
                         const SizedBox(width: 12),
-                        Icon(
-                          Icons.visibility,
-                          size: 16,
-                          color: Colors.blueGrey,
-                        ),
+                        const Icon(Icons.visibility,
+                            size: 16, color: Colors.blueGrey),
                         const SizedBox(width: 4),
-                        Text(
-                          '${repository.watchers_count}',
-                          style: Theme.of(context).textTheme.bodySmall,
-                        ),
-                        const SizedBox(width: 12),
-
+                        Text(repository.watchers_count.toString(),
+                            style: Theme.of(context).textTheme.bodySmall),
                       ],
                     ),
                   ],
                 ),
               ),
-              Icon(
-                Icons.arrow_forward_ios,
-                size: 16,
-                color: Theme.of(context).colorScheme.onSurface.withOpacity(0.6),
-              ),
+              Icon(Icons.arrow_forward_ios,
+                  size: 16,
+                  color:
+                      Theme.of(context).colorScheme.onSurface.withOpacity(0.6)),
             ],
           ),
         ),
@@ -195,26 +167,26 @@ class HomePage extends HookConsumerWidget {
     );
   }
 
-  Widget _buildMessageText({required messageType, required context}) {
+  Widget _buildMessageText(
+      {required MessageType messageType, required BuildContext context}) {
     return Expanded(
-        child: Center(
-            child: Column(
-      mainAxisAlignment: MainAxisAlignment.center,
-      children: [
-        messageType == MessageType.enterRepositoryName
-            ? Text(AppLocalizations.of(context)!.enterRepositoryName)
-            : SizedBox(),
-        messageType == MessageType.repositoryNotFound
-            ? Text(AppLocalizations.of(context)!.repositoryNotFound)
-            : SizedBox(),
-        messageType == MessageType.error
-            ? Text(AppLocalizations.of(context)!.repositoryNotFound)
-            : SizedBox()
-      ],
-    )));
+      child: Center(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            if (messageType == MessageType.enterRepositoryName)
+              Text(AppLocalizations.of(context)!.enterRepositoryName),
+            if (messageType == MessageType.repositoryNotFound)
+              Text(AppLocalizations.of(context)!.repositoryNotFound),
+            if (messageType == MessageType.error)
+              Text(AppLocalizations.of(context)!.repositoryDetail),
+          ],
+        ),
+      ),
+    );
   }
 
-  Widget _buildLoadingIndicator({required context}) {
+  Widget _buildLoadingIndicator(BuildContext context) {
     return Expanded(
       child: Center(
         child: CircularProgressIndicator(
