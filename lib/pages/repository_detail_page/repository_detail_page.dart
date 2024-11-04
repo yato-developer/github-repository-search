@@ -125,23 +125,30 @@ class RepositoryDetailPage extends StatelessWidget {
           throw 'Could not launch $url';
         }
       },
-      child: Container(
-        width: 300,
-        height: 55,
-        decoration: BoxDecoration(
-          color: Theme.of(context).colorScheme.primary,
-          borderRadius: BorderRadius.circular(24),
-        ),
-        child: Center(
-          child: Text(
-            AppLocalizations.of(context)!.openGitHub,
-            style: TextStyle(
-              fontSize: 18,
-              fontWeight: FontWeight.bold,
-              letterSpacing: 1.0,
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          Container(
+            decoration: BoxDecoration(
+              color: Theme.of(context).colorScheme.primary,
+              borderRadius: BorderRadius.circular(24),
+            ),
+            child: Padding(
+              padding: const EdgeInsets.only(
+                  left: 24.0, right: 24, top: 16, bottom: 16),
+              child: Center(
+                child: Text(
+                  AppLocalizations.of(context)!.openGitHub,
+                  style: TextStyle(
+                    fontSize: 18,
+                    fontWeight: FontWeight.bold,
+                    letterSpacing: 1.0,
+                  ),
+                ),
+              ),
             ),
           ),
-        ),
+        ],
       ),
     );
   }

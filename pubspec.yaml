@@ -43,6 +43,7 @@ dependencies:
   intl: any
   url_launcher: ^6.3.1
   flutter_hooks: ^0.20.5
+  device_preview: ^1.2.0
 
 dev_dependencies:
   flutter_test:
