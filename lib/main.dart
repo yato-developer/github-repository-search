@@ -1,3 +1,4 @@
+import 'package:device_preview/device_preview.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:github_repository_search/l10n/l10n.dart';
@@ -7,6 +8,9 @@ import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 void main() {
+  //DevicePreview
+  //runApp(DevicePreview(builder: (_) => ProviderScope(child: MyApp())));
+
   runApp(
     const ProviderScope(child: MyApp()),
   );
@@ -29,7 +33,8 @@ class MyApp extends StatelessWidget {
       ],
       theme: lightMode,
       darkTheme: darkMode,
-      home: const HomePage(),
+      home: MediaQuery.withClampedTextScaling(
+          minScaleFactor: 0.9, maxScaleFactor: 1.5, child: const HomePage()),
     );
   }
 }

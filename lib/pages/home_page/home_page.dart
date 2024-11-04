@@ -126,11 +126,12 @@ class HomePage extends HookConsumerWidget {
                       repository.name,
                       style: Theme.of(context).textTheme.titleMedium?.copyWith(
                             fontWeight: FontWeight.bold,
+                            fontSize: 17,
                             color: Theme.of(context).colorScheme.onSurface,
                           ),
                       overflow: TextOverflow.ellipsis,
                     ),
-                    const SizedBox(height: 8),
+                    const SizedBox(height: 5),
                     Text(
                       repository.description == "null"
                           ? AppLocalizations.of(context)!.noDescription
@@ -178,17 +179,27 @@ class HomePage extends HookConsumerWidget {
 
   Widget _buildMessageText(
       {required MessageType messageType, required BuildContext context}) {
+    final double fontSize = 16;
     return Expanded(
       child: Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             if (messageType == MessageType.enterRepositoryName)
-              Text(AppLocalizations.of(context)!.enterRepositoryName),
+              Text(
+                AppLocalizations.of(context)!.enterRepositoryName,
+                style: TextStyle(fontSize: fontSize),
+              ),
             if (messageType == MessageType.repositoryNotFound)
-              Text(AppLocalizations.of(context)!.repositoryNotFound),
+              Text(
+                AppLocalizations.of(context)!.repositoryNotFound,
+                style: TextStyle(fontSize: fontSize),
+              ),
             if (messageType == MessageType.error)
-              Text(AppLocalizations.of(context)!.repositoryDetail),
+              Text(
+                AppLocalizations.of(context)!.repositoryDetail,
+                style: TextStyle(fontSize: fontSize),
+              ),
           ],
         ),
       ),
