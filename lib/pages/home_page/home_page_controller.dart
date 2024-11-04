@@ -25,6 +25,9 @@ class HomePagePageController extends StateNotifier<HomePagePageState> {
 
   final service = GithubRepositoryService();
 
+  //test用
+  //var service = GithubRepositoryService();
+
   Future<void> searchRepository(String searchTerm) async {
     state = state.copyWith(loading: true, messageType: MessageType.none);
 
@@ -40,7 +43,6 @@ class HomePagePageController extends StateNotifier<HomePagePageState> {
         state = state.copyWith(
           repositorys: repositorys,
           loading: false,
-
         );
       }
     } catch (e) {
