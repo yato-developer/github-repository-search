@@ -57,7 +57,11 @@ class HomePage extends HookConsumerWidget {
                   hintStyle: const TextStyle(color: Colors.grey),
                 ),
                 onSubmitted: (value) {
-                  ref.read(homePageProvider.notifier).searchRepository(value);
+                  if (value.isEmpty) {
+                    FocusScope.of(context).unfocus();
+                  } else {
+                    ref.read(homePageProvider.notifier).searchRepository(value);
+                  }
                 },
               ),
             ),
@@ -140,7 +144,10 @@ class HomePage extends HookConsumerWidget {
                         const Icon(Icons.language,
                             size: 16, color: Colors.blue),
                         const SizedBox(width: 4),
-                        Text(repository.language == "null" ? "Unknown" : repository.language,
+                        Text(
+                            repository.language == "null"
+                                ? "Unknown"
+                                : repository.language,
                             style: Theme.of(context).textTheme.bodySmall),
                         const SizedBox(width: 12),
                         const Icon(Icons.star, size: 16, color: Colors.amber),
