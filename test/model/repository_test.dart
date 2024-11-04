@@ -1,5 +1,5 @@
 import 'package:flutter_test/flutter_test.dart';
-import 'package:github_repository_search/model/repository.dart';
+import 'package:github_repository_search/model/src/repository.dart';
 
 void main() {
   group('Repository', () {
@@ -11,6 +11,8 @@ void main() {
         "stargazers_count": 150,
         "forks_count": 50,
         "open_issues_count": 5,
+        "html_url": "https://github.com/yato-developer/github-repository-search",
+        "description": "flutter repo description",
         "owner": {"avatar_url": "https://example.com/avatar.png"}
       };
       final repository = Repository.fromJson(json);
@@ -21,6 +23,8 @@ void main() {
       expect(repository.stargazers_count, 150);
       expect(repository.forks_count, 50);
       expect(repository.open_issues_count, 5);
+      expect(repository.description, "flutter repo description");
+      expect(repository.html_url, "https://github.com/yato-developer/github-repository-search");
       expect(repository.owner.avatar_url, "https://example.com/avatar.png");
     });
 
@@ -31,12 +35,14 @@ void main() {
         "stargazers_count": 150,
         "forks_count": 50,
         "open_issues_count": 5,
+        "html_url": "https://github.com/yato-developer/github-repository-search",
         "owner": {"avatar_url": "https://example.com/avatar.png"}
       };
 
       final repository = Repository.fromJson(json);
 
       expect(repository.language, "null");
+      expect(repository.description, "null");
     });
   });
 
