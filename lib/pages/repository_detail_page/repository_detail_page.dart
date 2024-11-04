@@ -46,82 +46,67 @@ class RepositoryDetailPage extends StatelessWidget {
                   ],
                 ),
               ),
-              SizedBox(height: 10),
-              Card(
-                color: Theme.of(context).colorScheme.primary,
-                elevation: 2,
-                margin: EdgeInsets.symmetric(vertical: 8),
-                child: ListTile(
-                  leading: Icon(Icons.language, color: Colors.blue),
-                  title: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      Text("Language"),
-                      Text(repository.language == "null"
-                          ? "Unknown"
-                          : repository.language),
-                    ],
-                  ),
+              SizedBox(height: 15),
+              Container(
+                decoration: BoxDecoration(
+                  color: Theme.of(context).colorScheme.primary,
+                  borderRadius: BorderRadius.circular(12),
                 ),
-              ),
-              Card(
-                color: Theme.of(context).colorScheme.primary,
-                elevation: 2,
-                margin: EdgeInsets.symmetric(vertical: 8),
-                child: ListTile(
-                  leading: Icon(Icons.star, color: Colors.amber),
-                  title: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      Text("Stars"),
-                      Text(repository.stargazers_count.toString()),
-                    ],
-                  ),
-                ),
-              ),
-              Card(
-                color: Theme.of(context).colorScheme.primary,
-                elevation: 2,
-                margin: EdgeInsets.symmetric(vertical: 8),
-                child: ListTile(
-                  leading: Icon(Icons.visibility, color: Colors.blueGrey),
-                  title: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      Text("Watchers"),
-                      Text(repository.watchers_count.toString()),
-                    ],
-                  ),
-                ),
-              ),
-              Card(
-                color: Theme.of(context).colorScheme.primary,
-                elevation: 2,
-                margin: EdgeInsets.symmetric(vertical: 8),
-                child: ListTile(
-                  leading: Icon(Icons.device_hub, color: Colors.pink),
-                  title: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      Text("Forks"),
-                      Text(repository.forks_count.toString()),
-                    ],
-                  ),
-                ),
-              ),
-              Card(
-                color: Theme.of(context).colorScheme.primary,
-                elevation: 2,
-                margin: EdgeInsets.symmetric(vertical: 8),
-                child: ListTile(
-                  leading: Icon(Icons.bug_report, color: Colors.green),
-                  title: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      Text("Issues"),
-                      Text(repository.open_issues_count.toString()),
-                    ],
-                  ),
+                child: Column(
+                  children: [
+                    ListTile(
+                      leading: Icon(Icons.language, color: Colors.blue),
+                      title: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          Text("Language"),
+                          Text(repository.language == "null"
+                              ? "Unknown"
+                              : repository.language),
+                        ],
+                      ),
+                    ),
+                    ListTile(
+                      leading: Icon(Icons.star, color: Colors.amber),
+                      title: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          Text("Stars"),
+                          Text(repository.stargazers_count.toString()),
+                        ],
+                      ),
+                    ),
+                    ListTile(
+                      leading: Icon(Icons.visibility, color: Colors.blueGrey),
+                      title: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          Text("Watchers"),
+                          Text(repository.watchers_count.toString()),
+                        ],
+                      ),
+                    ),
+                    ListTile(
+                      leading: Icon(Icons.device_hub, color: Colors.pink),
+                      title: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          Text("Forks"),
+                          Text(repository.forks_count.toString()),
+                        ],
+                      ),
+                    ),
+                    ListTile(
+                      leading: Icon(Icons.bug_report, color: Colors.green),
+                      title: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          Text("Issues"),
+                          Text(repository.open_issues_count.toString()),
+                        ],
+                      ),
+                    ),
+                  ],
                 ),
               ),
             ],
@@ -137,28 +122,6 @@ class RepositoryDetailPage extends StatelessWidget {
         if (await canLaunchUrl(url)) {
           await launchUrl(url);
         } else {
-          showDialog(
-            context: context,
-            builder: (BuildContext context) {
-              return AlertDialog(
-                title: Text(AppLocalizations.of(context)!.err),
-                content: Text(AppLocalizations.of(context)!.errMessage),
-                actions: <Widget>[
-                  TextButton(
-                    onPressed: () {
-                      Navigator.of(context).pop();
-                    },
-                    child: Text(
-                      AppLocalizations.of(context)!.close,
-                      style: TextStyle(
-                        color: Theme.of(context).colorScheme.tertiary,
-                      ),
-                    ),
-                  ),
-                ],
-              );
-            },
-          );
           throw 'Could not launch $url';
         }
       },
