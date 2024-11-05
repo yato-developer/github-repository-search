@@ -24,7 +24,17 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'Github Repository Search',
       supportedLocales: L10n.all,
-      locale: const Locale('en'),
+      localeResolutionCallback: (locale, supportedLocales) {
+        if (locale != null) {
+          for (var supportedLocale in supportedLocales) {
+            if (supportedLocale.languageCode == locale.languageCode) {
+              return supportedLocale;
+            }
+          }
+        }
+        //設定言語が日本語以外
+        return const Locale('en');
+      },
       localizationsDelegates: const [
         AppLocalizations.delegate,
         GlobalMaterialLocalizations.delegate,
