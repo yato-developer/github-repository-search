@@ -6,7 +6,7 @@ class GithubRepositoryService {
   final String _baseUrl = 'https://api.github.com/search/repositories';
 
   Future<List<Repository>> searchRepository(String searchTerm) async {
-    final url = Uri.parse('$_baseUrl?q=$searchTerm+in:name&sort=stars');
+    final url = Uri.parse('$_baseUrl?q=$searchTerm');
 
     try {
       final response = await http.get(url);
