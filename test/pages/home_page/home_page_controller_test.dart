@@ -65,7 +65,7 @@ void main() {
     when(mockService.searchRepository('Test'))
         .thenAnswer((_) async => repositories);
 
-    await controller.searchRepository('Test'); 
+    await controller.searchRepository('Test');
 
     expect(container.read(homePageProvider).repositorys, repositories);
     expect(container.read(homePageProvider).messageType, MessageType.none);
@@ -79,7 +79,9 @@ void main() {
 
     await controller.searchRepository('NotFound');
 
-    expect(container.read(homePageProvider).messageType,
-        MessageType.repositoryNotFound,);
+    expect(
+      container.read(homePageProvider).messageType,
+      MessageType.repositoryNotFound,
+    );
   });
 }

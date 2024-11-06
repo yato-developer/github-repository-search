@@ -31,10 +31,14 @@ void main() {
     await tester.pump();
 
     //ローディングインジケータ、メッセージ、リストビューが存在するか確認
-    expect(find.byType(CircularProgressIndicator),
-        findsNothing,); // 初期状態でローディングインジケータがないことを確認
-    expect(find.text('R E P O S I T O R Y'),
-        findsOneWidget,); // AppBarのタイトルが表示されているか確認
+    expect(
+      find.byType(CircularProgressIndicator),
+      findsNothing,
+    ); // 初期状態でローディングインジケータがないことを確認
+    expect(
+      find.text('R E P O S I T O R Y'),
+      findsOneWidget,
+    ); // AppBarのタイトルが表示されているか確認
 
     // リポジトリのリストビューが表示されているか確認
     expect(find.byType(ListView), findsOneWidget);

@@ -24,8 +24,10 @@ void main() {
       expect(repository.forksCount, 50);
       expect(repository.openIssuesCount, 5);
       expect(repository.description, 'flutter repo description');
-      expect(repository.htmlUrl,
-          'https://github.com/yato-developer/github-repository-search',);
+      expect(
+        repository.htmlUrl,
+        'https://github.com/yato-developer/github-repository-search',
+      );
       expect(repository.owner.avatarUrl, 'https://example.com/avatar.png');
     });
 
