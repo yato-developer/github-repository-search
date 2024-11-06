@@ -80,6 +80,6 @@ void main() {
     await controller.searchRepository('NotFound');
 
     expect(container.read(homePageProvider).messageType,
-        MessageType.repositoryNotFound);
+        MessageType.repositoryNotFound,);
   });
 }

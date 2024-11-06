@@ -84,6 +84,8 @@ linter:
 
 analyzer:
   exclude:
+    - "*.yaml"
+    - "**/l10n.dart"
     - "**/*.g.dart"
     - "**/*.freezed.dart"
   errors:

@@ -1,16 +1,12 @@
-import 'package:device_preview/device_preview.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:github_repository_search/l10n/l10n.dart';
 import 'package:github_repository_search/pages/home_page/home_page.dart';
 import 'package:github_repository_search/themes/app_colors.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
-import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 void main() {
-  //DevicePreview
-  //runApp(DevicePreview(builder: (_) => ProviderScope(child: MyApp())));
-
   runApp(
     const ProviderScope(child: MyApp()),
   );
@@ -26,13 +22,12 @@ class MyApp extends StatelessWidget {
       supportedLocales: L10n.all,
       localeResolutionCallback: (locale, supportedLocales) {
         if (locale != null) {
-          for (var supportedLocale in supportedLocales) {
+          for (final supportedLocale in supportedLocales) {
             if (supportedLocale.languageCode == locale.languageCode) {
               return supportedLocale;
             }
           }
         }
-        //設定言語が日本語以外
         return const Locale('en');
       },
       localizationsDelegates: const [
@@ -44,7 +39,10 @@ class MyApp extends StatelessWidget {
       theme: lightMode,
       darkTheme: darkMode,
       home: MediaQuery.withClampedTextScaling(
-          minScaleFactor: 0.9, maxScaleFactor: 1.5, child: const HomePage()),
+        minScaleFactor: 0.9,
+        maxScaleFactor: 1.5,
+        child: const HomePage(),
+      ),
     );
   }
 }

@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:github_repository_search/model/enums.dart';
+import 'package:github_repository_search/model/src/repository.dart';
 import 'package:github_repository_search/pages/home_page/home_page_controller.dart';
 import 'package:github_repository_search/pages/repository_detail_page/repository_detail_page.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
-import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class HomePage extends HookConsumerWidget {
   const HomePage({super.key});
@@ -20,7 +21,7 @@ class HomePage extends HookConsumerWidget {
       backgroundColor: Theme.of(context).colorScheme.surface,
       appBar: AppBar(
         backgroundColor: Theme.of(context).colorScheme.surface,
-        title: Text("R E P O S I T O R Y"),
+        title: Text('R E P O S I T O R Y'),
       ),
       body: Column(
         children: [
@@ -34,10 +35,13 @@ class HomePage extends HookConsumerWidget {
   }
 
   Widget _buildSearchTextField(
-      TextEditingController controller, WidgetRef ref, BuildContext context) {
+    TextEditingController controller,
+    WidgetRef ref,
+    BuildContext context,
+  ) {
     return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 16.0),
-      child: Container(
+      padding: const EdgeInsets.symmetric(horizontal: 16),
+      child: DecoratedBox(
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(12),
           color: Theme.of(context).colorScheme.primary,
@@ -53,7 +57,7 @@ class HomePage extends HookConsumerWidget {
                 controller: controller,
                 decoration: InputDecoration(
                   border: InputBorder.none,
-                  hintText: " ${AppLocalizations.of(context)!.hintText}",
+                  hintText: ' ${AppLocalizations.of(context)!.hintText}',
                   hintStyle: const TextStyle(color: Colors.grey),
                 ),
                 onSubmitted: (value) {
@@ -83,7 +87,9 @@ class HomePage extends HookConsumerWidget {
         itemCount: repositories.length,
         itemBuilder: (context, index) {
           return _buildRepositoryItemContainer(
-              context: context, repository: repositories[index]);
+            context: context,
+            repository: repositories[index],
+          );
         },
       ),
     );
@@ -91,7 +97,7 @@ class HomePage extends HookConsumerWidget {
 
   Widget _buildRepositoryItemContainer({
     required BuildContext context,
-    required repository,
+    required Repository repository,
   }) {
     return GestureDetector(
       onTap: () {
@@ -133,7 +139,7 @@ class HomePage extends HookConsumerWidget {
                     ),
                     const SizedBox(height: 5),
                     Text(
-                      repository.description == "null"
+                      repository.description == 'null'
                           ? AppLocalizations.of(context)!.noDescription
                           : repository.description,
                       maxLines: 2,
@@ -142,34 +148,46 @@ class HomePage extends HookConsumerWidget {
                     const SizedBox(height: 8),
                     Row(
                       children: [
-                        const Icon(Icons.language,
-                            size: 16, color: Colors.blue),
+                        const Icon(
+                          Icons.language,
+                          size: 16,
+                          color: Colors.blue,
+                        ),
                         const SizedBox(width: 4),
                         Text(
-                            repository.language == "null"
-                                ? "Unknown"
-                                : repository.language,
-                            style: Theme.of(context).textTheme.bodySmall),
+                          repository.language == 'null'
+                              ? 'Unknown'
+                              : repository.language,
+                          style: Theme.of(context).textTheme.bodySmall,
+                        ),
                         const SizedBox(width: 12),
                         const Icon(Icons.star, size: 16, color: Colors.amber),
                         const SizedBox(width: 4),
-                        Text(repository.stargazers_count.toString(),
-                            style: Theme.of(context).textTheme.bodySmall),
+                        Text(
+                          repository.stargazersCount.toString(),
+                          style: Theme.of(context).textTheme.bodySmall,
+                        ),
                         const SizedBox(width: 12),
-                        const Icon(Icons.visibility,
-                            size: 16, color: Colors.blueGrey),
+                        const Icon(
+                          Icons.visibility,
+                          size: 16,
+                          color: Colors.blueGrey,
+                        ),
                         const SizedBox(width: 4),
-                        Text(repository.watchers_count.toString(),
-                            style: Theme.of(context).textTheme.bodySmall),
+                        Text(
+                          repository.watchersCount.toString(),
+                          style: Theme.of(context).textTheme.bodySmall,
+                        ),
                       ],
                     ),
                   ],
                 ),
               ),
-              Icon(Icons.arrow_forward_ios,
-                  size: 16,
-                  color:
-                      Theme.of(context).colorScheme.onSurface.withOpacity(0.6)),
+              Icon(
+                Icons.arrow_forward_ios,
+                size: 16,
+                color: Theme.of(context).colorScheme.onSurface.withOpacity(0.6),
+              ),
             ],
           ),
         ),
@@ -177,9 +195,11 @@ class HomePage extends HookConsumerWidget {
     );
   }
 
-  Widget _buildMessageText(
-      {required MessageType messageType, required BuildContext context}) {
-    final double fontSize = 16;
+  Widget _buildMessageText({
+    required MessageType messageType,
+    required BuildContext context,
+  }) {
+    final fontSize = 16.0;
     return Expanded(
       child: Center(
         child: Column(
