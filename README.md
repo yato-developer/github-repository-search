@@ -2,9 +2,13 @@
 
 GitHub Repository Searchは、キーワードで GitHub リポジトリを検索したり、スターや説明などの詳細を表示したり、リポジトリのGitHubページに移動したりできるシンプルなFlutterアプリケーションです。
 
-## Flutterバージョン
+## Flutter Version
 - Flutter SDK: [3.24.4] (管理: FVM)
 - Dart: [3.5.4]
+
+## Screenshots
+<img width="409" alt="スクリーンショット 2024-11-06 16 09 08" src="https://github.com/user-attachments/assets/6d29ced9-ba47-4ff1-ab10-9ee51e0e49a3">
+<img width="409" alt="スクリーンショット 2024-11-07 8 23 58" src="https://github.com/user-attachments/assets/7a5b5d7e-3155-4d6d-a4b7-0a5678d6b787">
 
 ## Features
 - キーワードでリポジトリを検索
