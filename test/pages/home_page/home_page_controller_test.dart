@@ -1,5 +1,4 @@
 import 'package:flutter_test/flutter_test.dart';
-
 import 'package:github_repository_search/model/enums.dart';
 import 'package:github_repository_search/model/src/repository.dart';
 import 'package:github_repository_search/pages/home_page/home_page_controller.dart';
@@ -53,13 +52,13 @@ void main() {
       Repository(
         name: 'TestRepo',
         language: 'Dart',
-        watchers_count: 10,
-        stargazers_count: 100,
-        forks_count: 5,
-        open_issues_count: 2,
-        html_url: 'https://github.com/user/TestRepo',
+        watchersCount: 10,
+        stargazersCount: 100,
+        forksCount: 5,
+        openIssuesCount: 2,
+        htmlUrl: 'https://github.com/user/TestRepo',
         description: 'This is a test repository',
-        owner: Owner(avatar_url: 'https://example.com/avatar.png'),
+        owner: Owner(avatarUrl: 'https://example.com/avatar.png'),
       ),
     ];
 

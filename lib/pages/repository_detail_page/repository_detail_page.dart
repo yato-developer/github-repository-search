@@ -29,7 +29,7 @@ class RepositoryDetailPage extends StatelessWidget {
                     CircleAvatar(
                       radius: 45,
                       backgroundImage:
-                          NetworkImage(repository.owner.avatar_url),
+                          NetworkImage(repository.owner.avatarUrl),
                     ),
                     SizedBox(height: 8),
                     Text(
@@ -44,7 +44,7 @@ class RepositoryDetailPage extends StatelessWidget {
                       height: 10,
                     ),
                     _buildOpenRepositoryButton(
-                        url: Uri.parse(repository.html_url), context: context),
+                        url: Uri.parse(repository.htmlUrl), context: context),
                   ],
                 ),
               ),
@@ -74,7 +74,7 @@ class RepositoryDetailPage extends StatelessWidget {
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
                           Text("Stars"),
-                          Text(repository.stargazers_count.toString()),
+                          Text(repository.stargazersCount.toString()),
                         ],
                       ),
                     ),
@@ -84,7 +84,7 @@ class RepositoryDetailPage extends StatelessWidget {
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
                           Text("Watchers"),
-                          Text(repository.watchers_count.toString()),
+                          Text(repository.watchersCount.toString()),
                         ],
                       ),
                     ),
@@ -94,7 +94,7 @@ class RepositoryDetailPage extends StatelessWidget {
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
                           Text("Forks"),
-                          Text(repository.forks_count.toString()),
+                          Text(repository.forksCount.toString()),
                         ],
                       ),
                     ),
@@ -104,7 +104,7 @@ class RepositoryDetailPage extends StatelessWidget {
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
                           Text("Issues"),
-                          Text(repository.open_issues_count.toString()),
+                          Text(repository.openIssuesCount.toString()),
                         ],
                       ),
                     ),

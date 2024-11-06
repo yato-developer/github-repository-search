@@ -22,11 +22,16 @@ Repository _$RepositoryFromJson(Map<String, dynamic> json) {
 mixin _$Repository {
   String get name => throw _privateConstructorUsedError;
   String get language => throw _privateConstructorUsedError;
-  int get watchers_count => throw _privateConstructorUsedError;
-  int get stargazers_count => throw _privateConstructorUsedError;
-  int get forks_count => throw _privateConstructorUsedError;
-  int get open_issues_count => throw _privateConstructorUsedError;
-  String get html_url => throw _privateConstructorUsedError;
+  @JsonKey(name: 'watchers_count')
+  int get watchersCount => throw _privateConstructorUsedError;
+  @JsonKey(name: 'stargazers_count')
+  int get stargazersCount => throw _privateConstructorUsedError;
+  @JsonKey(name: 'forks_count')
+  int get forksCount => throw _privateConstructorUsedError;
+  @JsonKey(name: 'open_issues_count')
+  int get openIssuesCount => throw _privateConstructorUsedError;
+  @JsonKey(name: 'html_url')
+  String get htmlUrl => throw _privateConstructorUsedError;
   String get description => throw _privateConstructorUsedError;
   Owner get owner => throw _privateConstructorUsedError;
 
@@ -49,11 +54,11 @@ abstract class $RepositoryCopyWith<$Res> {
   $Res call(
       {String name,
       String language,
-      int watchers_count,
-      int stargazers_count,
-      int forks_count,
-      int open_issues_count,
-      String html_url,
+      @JsonKey(name: 'watchers_count') int watchersCount,
+      @JsonKey(name: 'stargazers_count') int stargazersCount,
+      @JsonKey(name: 'forks_count') int forksCount,
+      @JsonKey(name: 'open_issues_count') int openIssuesCount,
+      @JsonKey(name: 'html_url') String htmlUrl,
       String description,
       Owner owner});
 
@@ -77,11 +82,11 @@ class _$RepositoryCopyWithImpl<$Res, $Val extends Repository>
   $Res call({
     Object? name = null,
     Object? language = null,
-    Object? watchers_count = null,
-    Object? stargazers_count = null,
-    Object? forks_count = null,
-    Object? open_issues_count = null,
-    Object? html_url = null,
+    Object? watchersCount = null,
+    Object? stargazersCount = null,
+    Object? forksCount = null,
+    Object? openIssuesCount = null,
+    Object? htmlUrl = null,
     Object? description = null,
     Object? owner = null,
   }) {
@@ -94,25 +99,25 @@ class _$RepositoryCopyWithImpl<$Res, $Val extends Repository>
           ? _value.language
           : language // ignore: cast_nullable_to_non_nullable
               as String,
-      watchers_count: null == watchers_count
-          ? _value.watchers_count
-          : watchers_count // ignore: cast_nullable_to_non_nullable
+      watchersCount: null == watchersCount
+          ? _value.watchersCount
+          : watchersCount // ignore: cast_nullable_to_non_nullable
               as int,
-      stargazers_count: null == stargazers_count
-          ? _value.stargazers_count
-          : stargazers_count // ignore: cast_nullable_to_non_nullable
+      stargazersCount: null == stargazersCount
+          ? _value.stargazersCount
+          : stargazersCount // ignore: cast_nullable_to_non_nullable
               as int,
-      forks_count: null == forks_count
-          ? _value.forks_count
-          : forks_count // ignore: cast_nullable_to_non_nullable
+      forksCount: null == forksCount
+          ? _value.forksCount
+          : forksCount // ignore: cast_nullable_to_non_nullable
               as int,
-      open_issues_count: null == open_issues_count
-          ? _value.open_issues_count
-          : open_issues_count // ignore: cast_nullable_to_non_nullable
+      openIssuesCount: null == openIssuesCount
+          ? _value.openIssuesCount
+          : openIssuesCount // ignore: cast_nullable_to_non_nullable
               as int,
-      html_url: null == html_url
-          ? _value.html_url
-          : html_url // ignore: cast_nullable_to_non_nullable
+      htmlUrl: null == htmlUrl
+          ? _value.htmlUrl
+          : htmlUrl // ignore: cast_nullable_to_non_nullable
               as String,
       description: null == description
           ? _value.description
@@ -147,11 +152,11 @@ abstract class _$$RepositoryImplCopyWith<$Res>
   $Res call(
       {String name,
       String language,
-      int watchers_count,
-      int stargazers_count,
-      int forks_count,
-      int open_issues_count,
-      String html_url,
+      @JsonKey(name: 'watchers_count') int watchersCount,
+      @JsonKey(name: 'stargazers_count') int stargazersCount,
+      @JsonKey(name: 'forks_count') int forksCount,
+      @JsonKey(name: 'open_issues_count') int openIssuesCount,
+      @JsonKey(name: 'html_url') String htmlUrl,
       String description,
       Owner owner});
 
@@ -174,11 +179,11 @@ class __$$RepositoryImplCopyWithImpl<$Res>
   $Res call({
     Object? name = null,
     Object? language = null,
-    Object? watchers_count = null,
-    Object? stargazers_count = null,
-    Object? forks_count = null,
-    Object? open_issues_count = null,
-    Object? html_url = null,
+    Object? watchersCount = null,
+    Object? stargazersCount = null,
+    Object? forksCount = null,
+    Object? openIssuesCount = null,
+    Object? htmlUrl = null,
     Object? description = null,
     Object? owner = null,
   }) {
@@ -191,25 +196,25 @@ class __$$RepositoryImplCopyWithImpl<$Res>
           ? _value.language
           : language // ignore: cast_nullable_to_non_nullable
               as String,
-      watchers_count: null == watchers_count
-          ? _value.watchers_count
-          : watchers_count // ignore: cast_nullable_to_non_nullable
+      watchersCount: null == watchersCount
+          ? _value.watchersCount
+          : watchersCount // ignore: cast_nullable_to_non_nullable
               as int,
-      stargazers_count: null == stargazers_count
-          ? _value.stargazers_count
-          : stargazers_count // ignore: cast_nullable_to_non_nullable
+      stargazersCount: null == stargazersCount
+          ? _value.stargazersCount
+          : stargazersCount // ignore: cast_nullable_to_non_nullable
               as int,
-      forks_count: null == forks_count
-          ? _value.forks_count
-          : forks_count // ignore: cast_nullable_to_non_nullable
+      forksCount: null == forksCount
+          ? _value.forksCount
+          : forksCount // ignore: cast_nullable_to_non_nullable
               as int,
-      open_issues_count: null == open_issues_count
-          ? _value.open_issues_count
-          : open_issues_count // ignore: cast_nullable_to_non_nullable
+      openIssuesCount: null == openIssuesCount
+          ? _value.openIssuesCount
+          : openIssuesCount // ignore: cast_nullable_to_non_nullable
               as int,
-      html_url: null == html_url
-          ? _value.html_url
-          : html_url // ignore: cast_nullable_to_non_nullable
+      htmlUrl: null == htmlUrl
+          ? _value.htmlUrl
+          : htmlUrl // ignore: cast_nullable_to_non_nullable
               as String,
       description: null == description
           ? _value.description
@@ -228,13 +233,13 @@ class __$$RepositoryImplCopyWithImpl<$Res>
 class _$RepositoryImpl implements _Repository {
   const _$RepositoryImpl(
       {required this.name,
-      this.language = "null",
-      required this.watchers_count,
-      required this.stargazers_count,
-      required this.forks_count,
-      required this.open_issues_count,
-      required this.html_url,
-      this.description = "null",
+      this.language = 'null',
+      @JsonKey(name: 'watchers_count') required this.watchersCount,
+      @JsonKey(name: 'stargazers_count') required this.stargazersCount,
+      @JsonKey(name: 'forks_count') required this.forksCount,
+      @JsonKey(name: 'open_issues_count') required this.openIssuesCount,
+      @JsonKey(name: 'html_url') required this.htmlUrl,
+      this.description = 'null',
       required this.owner});
 
   factory _$RepositoryImpl.fromJson(Map<String, dynamic> json) =>
@@ -246,15 +251,20 @@ class _$RepositoryImpl implements _Repository {
   @JsonKey()
   final String language;
   @override
-  final int watchers_count;
+  @JsonKey(name: 'watchers_count')
+  final int watchersCount;
   @override
-  final int stargazers_count;
+  @JsonKey(name: 'stargazers_count')
+  final int stargazersCount;
   @override
-  final int forks_count;
+  @JsonKey(name: 'forks_count')
+  final int forksCount;
   @override
-  final int open_issues_count;
+  @JsonKey(name: 'open_issues_count')
+  final int openIssuesCount;
   @override
-  final String html_url;
+  @JsonKey(name: 'html_url')
+  final String htmlUrl;
   @override
   @JsonKey()
   final String description;
@@ -263,7 +273,7 @@ class _$RepositoryImpl implements _Repository {
 
   @override
   String toString() {
-    return 'Repository(name: $name, language: $language, watchers_count: $watchers_count, stargazers_count: $stargazers_count, forks_count: $forks_count, open_issues_count: $open_issues_count, html_url: $html_url, description: $description, owner: $owner)';
+    return 'Repository(name: $name, language: $language, watchersCount: $watchersCount, stargazersCount: $stargazersCount, forksCount: $forksCount, openIssuesCount: $openIssuesCount, htmlUrl: $htmlUrl, description: $description, owner: $owner)';
   }
 
   @override
@@ -274,16 +284,15 @@ class _$RepositoryImpl implements _Repository {
             (identical(other.name, name) || other.name == name) &&
             (identical(other.language, language) ||
                 other.language == language) &&
-            (identical(other.watchers_count, watchers_count) ||
-                other.watchers_count == watchers_count) &&
-            (identical(other.stargazers_count, stargazers_count) ||
-                other.stargazers_count == stargazers_count) &&
-            (identical(other.forks_count, forks_count) ||
-                other.forks_count == forks_count) &&
-            (identical(other.open_issues_count, open_issues_count) ||
-                other.open_issues_count == open_issues_count) &&
-            (identical(other.html_url, html_url) ||
-                other.html_url == html_url) &&
+            (identical(other.watchersCount, watchersCount) ||
+                other.watchersCount == watchersCount) &&
+            (identical(other.stargazersCount, stargazersCount) ||
+                other.stargazersCount == stargazersCount) &&
+            (identical(other.forksCount, forksCount) ||
+                other.forksCount == forksCount) &&
+            (identical(other.openIssuesCount, openIssuesCount) ||
+                other.openIssuesCount == openIssuesCount) &&
+            (identical(other.htmlUrl, htmlUrl) || other.htmlUrl == htmlUrl) &&
             (identical(other.description, description) ||
                 other.description == description) &&
             (identical(other.owner, owner) || other.owner == owner));
@@ -295,11 +304,11 @@ class _$RepositoryImpl implements _Repository {
       runtimeType,
       name,
       language,
-      watchers_count,
-      stargazers_count,
-      forks_count,
-      open_issues_count,
-      html_url,
+      watchersCount,
+      stargazersCount,
+      forksCount,
+      openIssuesCount,
+      htmlUrl,
       description,
       owner);
 
@@ -323,11 +332,11 @@ abstract class _Repository implements Repository {
   const factory _Repository(
       {required final String name,
       final String language,
-      required final int watchers_count,
-      required final int stargazers_count,
-      required final int forks_count,
-      required final int open_issues_count,
-      required final String html_url,
+      @JsonKey(name: 'watchers_count') required final int watchersCount,
+      @JsonKey(name: 'stargazers_count') required final int stargazersCount,
+      @JsonKey(name: 'forks_count') required final int forksCount,
+      @JsonKey(name: 'open_issues_count') required final int openIssuesCount,
+      @JsonKey(name: 'html_url') required final String htmlUrl,
       final String description,
       required final Owner owner}) = _$RepositoryImpl;
 
@@ -339,15 +348,20 @@ abstract class _Repository implements Repository {
   @override
   String get language;
   @override
-  int get watchers_count;
+  @JsonKey(name: 'watchers_count')
+  int get watchersCount;
   @override
-  int get stargazers_count;
+  @JsonKey(name: 'stargazers_count')
+  int get stargazersCount;
   @override
-  int get forks_count;
+  @JsonKey(name: 'forks_count')
+  int get forksCount;
   @override
-  int get open_issues_count;
+  @JsonKey(name: 'open_issues_count')
+  int get openIssuesCount;
   @override
-  String get html_url;
+  @JsonKey(name: 'html_url')
+  String get htmlUrl;
   @override
   String get description;
   @override
@@ -362,12 +376,13 @@ abstract class _Repository implements Repository {
 }
 
 Owner _$OwnerFromJson(Map<String, dynamic> json) {
-  return _ExternalUrls.fromJson(json);
+  return _Owner.fromJson(json);
 }
 
 /// @nodoc
 mixin _$Owner {
-  String get avatar_url => throw _privateConstructorUsedError;
+  @JsonKey(name: 'avatar_url')
+  String get avatarUrl => throw _privateConstructorUsedError;
 
   /// Serializes this Owner to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -383,7 +398,7 @@ abstract class $OwnerCopyWith<$Res> {
   factory $OwnerCopyWith(Owner value, $Res Function(Owner) then) =
       _$OwnerCopyWithImpl<$Res, Owner>;
   @useResult
-  $Res call({String avatar_url});
+  $Res call({@JsonKey(name: 'avatar_url') String avatarUrl});
 }
 
 /// @nodoc
@@ -401,34 +416,33 @@ class _$OwnerCopyWithImpl<$Res, $Val extends Owner>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? avatar_url = null,
+    Object? avatarUrl = null,
   }) {
     return _then(_value.copyWith(
-      avatar_url: null == avatar_url
-          ? _value.avatar_url
-          : avatar_url // ignore: cast_nullable_to_non_nullable
+      avatarUrl: null == avatarUrl
+          ? _value.avatarUrl
+          : avatarUrl // ignore: cast_nullable_to_non_nullable
               as String,
     ) as $Val);
   }
 }
 
 /// @nodoc
-abstract class _$$ExternalUrlsImplCopyWith<$Res>
-    implements $OwnerCopyWith<$Res> {
-  factory _$$ExternalUrlsImplCopyWith(
-          _$ExternalUrlsImpl value, $Res Function(_$ExternalUrlsImpl) then) =
-      __$$ExternalUrlsImplCopyWithImpl<$Res>;
+abstract class _$$OwnerImplCopyWith<$Res> implements $OwnerCopyWith<$Res> {
+  factory _$$OwnerImplCopyWith(
+          _$OwnerImpl value, $Res Function(_$OwnerImpl) then) =
+      __$$OwnerImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({String avatar_url});
+  $Res call({@JsonKey(name: 'avatar_url') String avatarUrl});
 }
 
 /// @nodoc
-class __$$ExternalUrlsImplCopyWithImpl<$Res>
-    extends _$OwnerCopyWithImpl<$Res, _$ExternalUrlsImpl>
-    implements _$$ExternalUrlsImplCopyWith<$Res> {
-  __$$ExternalUrlsImplCopyWithImpl(
-      _$ExternalUrlsImpl _value, $Res Function(_$ExternalUrlsImpl) _then)
+class __$$OwnerImplCopyWithImpl<$Res>
+    extends _$OwnerCopyWithImpl<$Res, _$OwnerImpl>
+    implements _$$OwnerImplCopyWith<$Res> {
+  __$$OwnerImplCopyWithImpl(
+      _$OwnerImpl _value, $Res Function(_$OwnerImpl) _then)
       : super(_value, _then);
 
   /// Create a copy of Owner
@@ -436,12 +450,12 @@ class __$$ExternalUrlsImplCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? avatar_url = null,
+    Object? avatarUrl = null,
   }) {
-    return _then(_$ExternalUrlsImpl(
-      avatar_url: null == avatar_url
-          ? _value.avatar_url
-          : avatar_url // ignore: cast_nullable_to_non_nullable
+    return _then(_$OwnerImpl(
+      avatarUrl: null == avatarUrl
+          ? _value.avatarUrl
+          : avatarUrl // ignore: cast_nullable_to_non_nullable
               as String,
     ));
   }
@@ -449,63 +463,65 @@ class __$$ExternalUrlsImplCopyWithImpl<$Res>
 
 /// @nodoc
 @JsonSerializable()
-class _$ExternalUrlsImpl implements _ExternalUrls {
-  const _$ExternalUrlsImpl({required this.avatar_url});
+class _$OwnerImpl implements _Owner {
+  const _$OwnerImpl({@JsonKey(name: 'avatar_url') required this.avatarUrl});
 
-  factory _$ExternalUrlsImpl.fromJson(Map<String, dynamic> json) =>
-      _$$ExternalUrlsImplFromJson(json);
+  factory _$OwnerImpl.fromJson(Map<String, dynamic> json) =>
+      _$$OwnerImplFromJson(json);
 
   @override
-  final String avatar_url;
+  @JsonKey(name: 'avatar_url')
+  final String avatarUrl;
 
   @override
   String toString() {
-    return 'Owner(avatar_url: $avatar_url)';
+    return 'Owner(avatarUrl: $avatarUrl)';
   }
 
   @override
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$ExternalUrlsImpl &&
-            (identical(other.avatar_url, avatar_url) ||
-                other.avatar_url == avatar_url));
+            other is _$OwnerImpl &&
+            (identical(other.avatarUrl, avatarUrl) ||
+                other.avatarUrl == avatarUrl));
   }
 
   @JsonKey(includeFromJson: false, includeToJson: false)
   @override
-  int get hashCode => Object.hash(runtimeType, avatar_url);
+  int get hashCode => Object.hash(runtimeType, avatarUrl);
 
   /// Create a copy of Owner
   /// with the given fields replaced by the non-null parameter values.
   @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
-  _$$ExternalUrlsImplCopyWith<_$ExternalUrlsImpl> get copyWith =>
-      __$$ExternalUrlsImplCopyWithImpl<_$ExternalUrlsImpl>(this, _$identity);
+  _$$OwnerImplCopyWith<_$OwnerImpl> get copyWith =>
+      __$$OwnerImplCopyWithImpl<_$OwnerImpl>(this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$ExternalUrlsImplToJson(
+    return _$$OwnerImplToJson(
       this,
     );
   }
 }
 
-abstract class _ExternalUrls implements Owner {
-  const factory _ExternalUrls({required final String avatar_url}) =
-      _$ExternalUrlsImpl;
+abstract class _Owner implements Owner {
+  const factory _Owner(
+          {@JsonKey(name: 'avatar_url') required final String avatarUrl}) =
+      _$OwnerImpl;
 
-  factory _ExternalUrls.fromJson(Map<String, dynamic> json) =
-      _$ExternalUrlsImpl.fromJson;
+  factory _Owner.fromJson(Map<String, dynamic> json) = _$OwnerImpl.fromJson;
 
   @override
-  String get avatar_url;
+  @JsonKey(name: 'avatar_url')
+  String get avatarUrl;
 
   /// Create a copy of Owner
   /// with the given fields replaced by the non-null parameter values.
   @override
   @JsonKey(includeFromJson: false, includeToJson: false)
-  _$$ExternalUrlsImplCopyWith<_$ExternalUrlsImpl> get copyWith =>
+  _$$OwnerImplCopyWith<_$OwnerImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
