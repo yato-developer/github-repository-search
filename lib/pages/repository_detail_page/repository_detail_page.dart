@@ -20,33 +20,31 @@ class RepositoryDetailPage extends StatelessWidget {
         child: Padding(
           padding: const EdgeInsets.all(16),
           child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Center(
-                child: Column(
-                  children: [
-                    CircleAvatar(
-                      radius: 45,
-                      backgroundImage: NetworkImage(repository.owner.avatarUrl),
+              CircleAvatar(
+                radius: 45,
+                backgroundImage: NetworkImage(repository.owner.avatarUrl),
+              ),
+              SizedBox(height: 8),
+              Text(
+                repository.name,
+                style: TextStyle(fontSize: 26, fontWeight: FontWeight.bold),
+              ),
+              repository.description == 'null'
+                  ? Text(
+                      AppLocalizations.of(context)!.noDescription,
+                      style: TextStyle(fontSize: 16),
+                    )
+                  : Text(
+                      repository.description,
+                      style: TextStyle(fontSize: 16),
                     ),
-                    SizedBox(height: 8),
-                    Text(
-                      repository.name,
-                      style:
-                          TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
-                    ),
-                    repository.description == 'null'
-                        ? Text(AppLocalizations.of(context)!.noDescription)
-                        : Text(repository.description),
-                    SizedBox(
-                      height: 10,
-                    ),
-                    _buildOpenRepositoryButton(
-                      url: Uri.parse(repository.htmlUrl),
-                      context: context,
-                    ),
-                  ],
-                ),
+              SizedBox(
+                height: 10,
+              ),
+              _buildOpenRepositoryButton(
+                url: Uri.parse(repository.htmlUrl),
+                context: context,
               ),
               SizedBox(height: 15),
               DecoratedBox(

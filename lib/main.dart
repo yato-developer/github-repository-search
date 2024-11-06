@@ -8,7 +8,13 @@ import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 void main() {
   runApp(
-    const ProviderScope(child: MyApp()),
+    ProviderScope(
+      child: MediaQuery.withClampedTextScaling(
+        minScaleFactor: 0.9,
+        maxScaleFactor: 1.5,
+        child: const MyApp(),
+      ),
+    ),
   );
 }
 
@@ -38,11 +44,7 @@ class MyApp extends StatelessWidget {
       ],
       theme: lightMode,
       darkTheme: darkMode,
-      home: MediaQuery.withClampedTextScaling(
-        minScaleFactor: 0.9,
-        maxScaleFactor: 1.5,
-        child: const HomePage(),
-      ),
+      home: HomePage(),
     );
   }
 }
