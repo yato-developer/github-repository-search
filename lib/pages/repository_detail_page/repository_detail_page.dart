@@ -1,12 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:github_repository_search/model/src/repository.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:github_repository_search/model/src/repository.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 class RepositoryDetailPage extends StatelessWidget {
-  final Repository repository;
-
   const RepositoryDetailPage({super.key, required this.repository});
+  final Repository repository;
 
   @override
   Widget build(BuildContext context) {
@@ -19,7 +18,7 @@ class RepositoryDetailPage extends StatelessWidget {
       ),
       body: SingleChildScrollView(
         child: Padding(
-          padding: const EdgeInsets.all(16.0),
+          padding: const EdgeInsets.all(16),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
@@ -28,8 +27,7 @@ class RepositoryDetailPage extends StatelessWidget {
                   children: [
                     CircleAvatar(
                       radius: 45,
-                      backgroundImage:
-                          NetworkImage(repository.owner.avatar_url),
+                      backgroundImage: NetworkImage(repository.owner.avatarUrl),
                     ),
                     SizedBox(height: 8),
                     Text(
@@ -37,19 +35,21 @@ class RepositoryDetailPage extends StatelessWidget {
                       style:
                           TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
                     ),
-                    repository.description == "null"
+                    repository.description == 'null'
                         ? Text(AppLocalizations.of(context)!.noDescription)
                         : Text(repository.description),
                     SizedBox(
                       height: 10,
                     ),
                     _buildOpenRepositoryButton(
-                        url: Uri.parse(repository.html_url), context: context),
+                      url: Uri.parse(repository.htmlUrl),
+                      context: context,
+                    ),
                   ],
                 ),
               ),
               SizedBox(height: 15),
-              Container(
+              DecoratedBox(
                 decoration: BoxDecoration(
                   color: Theme.of(context).colorScheme.primary,
                   borderRadius: BorderRadius.circular(12),
@@ -61,10 +61,12 @@ class RepositoryDetailPage extends StatelessWidget {
                       title: Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
-                          Text("Language"),
-                          Text(repository.language == "null"
-                              ? "Unknown"
-                              : repository.language),
+                          Text('Language'),
+                          Text(
+                            repository.language == 'null'
+                                ? 'Unknown'
+                                : repository.language,
+                          ),
                         ],
                       ),
                     ),
@@ -73,8 +75,8 @@ class RepositoryDetailPage extends StatelessWidget {
                       title: Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
-                          Text("Stars"),
-                          Text(repository.stargazers_count.toString()),
+                          Text('Stars'),
+                          Text(repository.stargazersCount.toString()),
                         ],
                       ),
                     ),
@@ -83,8 +85,8 @@ class RepositoryDetailPage extends StatelessWidget {
                       title: Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
-                          Text("Watchers"),
-                          Text(repository.watchers_count.toString()),
+                          Text('Watchers'),
+                          Text(repository.watchersCount.toString()),
                         ],
                       ),
                     ),
@@ -93,8 +95,8 @@ class RepositoryDetailPage extends StatelessWidget {
                       title: Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
-                          Text("Forks"),
-                          Text(repository.forks_count.toString()),
+                          Text('Forks'),
+                          Text(repository.forksCount.toString()),
                         ],
                       ),
                     ),
@@ -103,8 +105,8 @@ class RepositoryDetailPage extends StatelessWidget {
                       title: Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
-                          Text("Issues"),
-                          Text(repository.open_issues_count.toString()),
+                          Text('Issues'),
+                          Text(repository.openIssuesCount.toString()),
                         ],
                       ),
                     ),
@@ -124,27 +126,31 @@ class RepositoryDetailPage extends StatelessWidget {
         if (await canLaunchUrl(url)) {
           await launchUrl(url);
         } else {
-          throw 'Could not launch $url';
+          throw Exception('Could not launch $url');
         }
       },
       child: Row(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          Container(
+          DecoratedBox(
             decoration: BoxDecoration(
               color: Theme.of(context).colorScheme.primary,
               borderRadius: BorderRadius.circular(24),
             ),
             child: Padding(
               padding: const EdgeInsets.only(
-                  left: 24.0, right: 24, top: 16, bottom: 16),
+                left: 24,
+                right: 24,
+                top: 16,
+                bottom: 16,
+              ),
               child: Center(
                 child: Text(
                   AppLocalizations.of(context)!.openGitHub,
                   style: TextStyle(
                     fontSize: 18,
                     fontWeight: FontWeight.bold,
-                    letterSpacing: 1.0,
+                    letterSpacing: 1,
                   ),
                 ),
               ),

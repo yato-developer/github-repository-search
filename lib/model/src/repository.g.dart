@@ -9,13 +9,13 @@ part of 'repository.dart';
 _$RepositoryImpl _$$RepositoryImplFromJson(Map<String, dynamic> json) =>
     _$RepositoryImpl(
       name: json['name'] as String,
-      language: json['language'] as String? ?? "null",
-      watchers_count: (json['watchers_count'] as num).toInt(),
-      stargazers_count: (json['stargazers_count'] as num).toInt(),
-      forks_count: (json['forks_count'] as num).toInt(),
-      open_issues_count: (json['open_issues_count'] as num).toInt(),
-      html_url: json['html_url'] as String,
-      description: json['description'] as String? ?? "null",
+      language: json['language'] as String? ?? 'null',
+      watchersCount: (json['watchers_count'] as num).toInt(),
+      stargazersCount: (json['stargazers_count'] as num).toInt(),
+      forksCount: (json['forks_count'] as num).toInt(),
+      openIssuesCount: (json['open_issues_count'] as num).toInt(),
+      htmlUrl: json['html_url'] as String,
+      description: json['description'] as String? ?? 'null',
       owner: Owner.fromJson(json['owner'] as Map<String, dynamic>),
     );
 
@@ -23,21 +23,20 @@ Map<String, dynamic> _$$RepositoryImplToJson(_$RepositoryImpl instance) =>
     <String, dynamic>{
       'name': instance.name,
       'language': instance.language,
-      'watchers_count': instance.watchers_count,
-      'stargazers_count': instance.stargazers_count,
-      'forks_count': instance.forks_count,
-      'open_issues_count': instance.open_issues_count,
-      'html_url': instance.html_url,
+      'watchers_count': instance.watchersCount,
+      'stargazers_count': instance.stargazersCount,
+      'forks_count': instance.forksCount,
+      'open_issues_count': instance.openIssuesCount,
+      'html_url': instance.htmlUrl,
       'description': instance.description,
       'owner': instance.owner,
     };
 
-_$ExternalUrlsImpl _$$ExternalUrlsImplFromJson(Map<String, dynamic> json) =>
-    _$ExternalUrlsImpl(
-      avatar_url: json['avatar_url'] as String,
+_$OwnerImpl _$$OwnerImplFromJson(Map<String, dynamic> json) => _$OwnerImpl(
+      avatarUrl: json['avatar_url'] as String,
     );
 
-Map<String, dynamic> _$$ExternalUrlsImplToJson(_$ExternalUrlsImpl instance) =>
+Map<String, dynamic> _$$OwnerImplToJson(_$OwnerImpl instance) =>
     <String, dynamic>{
-      'avatar_url': instance.avatar_url,
+      'avatar_url': instance.avatarUrl,
     };

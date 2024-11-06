@@ -23,7 +23,7 @@ final homePageProvider = StateNotifierProvider.autoDispose<
 class HomePagePageController extends StateNotifier<HomePagePageState> {
   HomePagePageController() : super(const HomePagePageState());
 
-  var service = GithubRepositoryService();
+  GithubRepositoryService service = GithubRepositoryService();
 
   Future<void> searchRepository(String searchTerm) async {
     state = state.copyWith(loading: true, messageType: MessageType.none);
