@@ -41,7 +41,7 @@ void main() {
     final controller = container.read(homePageProvider.notifier);
     final state = controller.state;
 
-    expect(state.repositorys, isEmpty);
+    expect(state.repositories, isEmpty);
     expect(state.loading, isFalse);
     expect(state.messageType, MessageType.enterRepositoryName);
   });
@@ -67,7 +67,7 @@ void main() {
 
     await controller.searchRepository('Test');
 
-    expect(container.read(homePageProvider).repositorys, repositories);
+    expect(container.read(homePageProvider).repositories, repositories);
     expect(container.read(homePageProvider).messageType, MessageType.none);
   });
 

@@ -9,7 +9,7 @@ part 'home_page_controller.freezed.dart';
 @freezed
 class HomePagePageState with _$HomePagePageState {
   const factory HomePagePageState({
-    @Default([]) List<Repository> repositorys,
+    @Default([]) List<Repository> repositories,
     @Default(false) bool loading,
     @Default(MessageType.enterRepositoryName) MessageType messageType,
   }) = _HomePagePageState;
@@ -29,16 +29,16 @@ class HomePagePageController extends StateNotifier<HomePagePageState> {
     state = state.copyWith(loading: true, messageType: MessageType.none);
 
     try {
-      final repositorys = await service.searchRepository(searchTerm);
-      if (repositorys.isEmpty) {
+      final repositories = await service.searchRepository(searchTerm);
+      if (repositories.isEmpty) {
         state = state.copyWith(
-          repositorys: repositorys,
+          repositories: repositories,
           loading: false,
           messageType: MessageType.repositoryNotFound,
         );
       } else {
         state = state.copyWith(
-          repositorys: repositorys,
+          repositories: repositories,
           loading: false,
         );
       }

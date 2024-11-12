@@ -15,8 +15,8 @@ class GithubRepositoryService {
         final Map<String, dynamic> data = json.decode(response.body);
         final List<dynamic> items = data['items'];
 
-        final repositorys = items.map((e) => Repository.fromJson(e)).toList();
-        return repositorys;
+        final repositories = items.map((e) => Repository.fromJson(e)).toList();
+        return repositories;
       } else {
         throw Exception('Failed to load repositories: ${response.statusCode}');
       }
