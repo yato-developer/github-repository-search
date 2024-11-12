@@ -81,7 +81,7 @@ class HomePage extends HookConsumerWidget {
 
   Widget _buildRepositoryList(WidgetRef ref) {
     final repositories =
-        ref.watch(homePageProvider.select((s) => s.repositorys));
+        ref.watch(homePageProvider.select((s) => s.repositories));
     return Expanded(
       child: ListView.builder(
         itemCount: repositories.length,
