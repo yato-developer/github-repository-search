@@ -15,13 +15,16 @@ class HomePageState with _$HomePageState {
   }) = _HomePageState;
 }
 
-final homePageProvider =
-    StateNotifierProvider.autoDispose<HomePageController, HomePageState>(
-  (ref) => HomePageController(),
+final homePageProvider = NotifierProvider<HomePageController, HomePageState>(
+  HomePageController.new,
 );
 
-class HomePageController extends StateNotifier<HomePageState> {
-  HomePageController() : super(const HomePageState());
+class HomePageController extends Notifier<HomePageState> {
+  //Notifier クラスを継承する場合、build メソッドをオーバーライドして実装する
+  @override
+  HomePageState build() {
+    return HomePageState();
+  }
 
   GithubRepositoryService service = GithubRepositoryService();
 
