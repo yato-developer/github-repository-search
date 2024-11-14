@@ -27,7 +27,7 @@ void main() {
     container = ProviderContainer(
       overrides: [
         homePageProvider.overrideWith(
-          (ref) => HomePagePageController()..service = mockService,
+          (ref) => HomePageController()..service = mockService,
         ),
       ],
     );

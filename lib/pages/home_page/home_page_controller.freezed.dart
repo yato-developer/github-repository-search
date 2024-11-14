@@ -15,39 +15,39 @@ final _privateConstructorUsedError = UnsupportedError(
     'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
 
 /// @nodoc
-mixin _$HomePagePageState {
+mixin _$HomePageState {
   List<Repository> get repositories => throw _privateConstructorUsedError;
   bool get loading => throw _privateConstructorUsedError;
   MessageType get messageType => throw _privateConstructorUsedError;
 
-  /// Create a copy of HomePagePageState
+  /// Create a copy of HomePageState
   /// with the given fields replaced by the non-null parameter values.
   @JsonKey(includeFromJson: false, includeToJson: false)
-  $HomePagePageStateCopyWith<HomePagePageState> get copyWith =>
+  $HomePageStateCopyWith<HomePageState> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class $HomePagePageStateCopyWith<$Res> {
-  factory $HomePagePageStateCopyWith(
-          HomePagePageState value, $Res Function(HomePagePageState) then) =
-      _$HomePagePageStateCopyWithImpl<$Res, HomePagePageState>;
+abstract class $HomePageStateCopyWith<$Res> {
+  factory $HomePageStateCopyWith(
+          HomePageState value, $Res Function(HomePageState) then) =
+      _$HomePageStateCopyWithImpl<$Res, HomePageState>;
   @useResult
   $Res call(
       {List<Repository> repositories, bool loading, MessageType messageType});
 }
 
 /// @nodoc
-class _$HomePagePageStateCopyWithImpl<$Res, $Val extends HomePagePageState>
-    implements $HomePagePageStateCopyWith<$Res> {
-  _$HomePagePageStateCopyWithImpl(this._value, this._then);
+class _$HomePageStateCopyWithImpl<$Res, $Val extends HomePageState>
+    implements $HomePageStateCopyWith<$Res> {
+  _$HomePageStateCopyWithImpl(this._value, this._then);
 
   // ignore: unused_field
   final $Val _value;
   // ignore: unused_field
   final $Res Function($Val) _then;
 
-  /// Create a copy of HomePagePageState
+  /// Create a copy of HomePageState
   /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
@@ -74,11 +74,11 @@ class _$HomePagePageStateCopyWithImpl<$Res, $Val extends HomePagePageState>
 }
 
 /// @nodoc
-abstract class _$$HomePagePageStateImplCopyWith<$Res>
-    implements $HomePagePageStateCopyWith<$Res> {
-  factory _$$HomePagePageStateImplCopyWith(_$HomePagePageStateImpl value,
-          $Res Function(_$HomePagePageStateImpl) then) =
-      __$$HomePagePageStateImplCopyWithImpl<$Res>;
+abstract class _$$HomePageStateImplCopyWith<$Res>
+    implements $HomePageStateCopyWith<$Res> {
+  factory _$$HomePageStateImplCopyWith(
+          _$HomePageStateImpl value, $Res Function(_$HomePageStateImpl) then) =
+      __$$HomePageStateImplCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call(
@@ -86,14 +86,14 @@ abstract class _$$HomePagePageStateImplCopyWith<$Res>
 }
 
 /// @nodoc
-class __$$HomePagePageStateImplCopyWithImpl<$Res>
-    extends _$HomePagePageStateCopyWithImpl<$Res, _$HomePagePageStateImpl>
-    implements _$$HomePagePageStateImplCopyWith<$Res> {
-  __$$HomePagePageStateImplCopyWithImpl(_$HomePagePageStateImpl _value,
-      $Res Function(_$HomePagePageStateImpl) _then)
+class __$$HomePageStateImplCopyWithImpl<$Res>
+    extends _$HomePageStateCopyWithImpl<$Res, _$HomePageStateImpl>
+    implements _$$HomePageStateImplCopyWith<$Res> {
+  __$$HomePageStateImplCopyWithImpl(
+      _$HomePageStateImpl _value, $Res Function(_$HomePageStateImpl) _then)
       : super(_value, _then);
 
-  /// Create a copy of HomePagePageState
+  /// Create a copy of HomePageState
   /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
@@ -102,7 +102,7 @@ class __$$HomePagePageStateImplCopyWithImpl<$Res>
     Object? loading = null,
     Object? messageType = null,
   }) {
-    return _then(_$HomePagePageStateImpl(
+    return _then(_$HomePageStateImpl(
       repositories: null == repositories
           ? _value._repositories
           : repositories // ignore: cast_nullable_to_non_nullable
@@ -121,8 +121,8 @@ class __$$HomePagePageStateImplCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$HomePagePageStateImpl implements _HomePagePageState {
-  const _$HomePagePageStateImpl(
+class _$HomePageStateImpl implements _HomePageState {
+  const _$HomePageStateImpl(
       {final List<Repository> repositories = const [],
       this.loading = false,
       this.messageType = MessageType.enterRepositoryName})
@@ -146,14 +146,14 @@ class _$HomePagePageStateImpl implements _HomePagePageState {
 
   @override
   String toString() {
-    return 'HomePagePageState(repositories: $repositories, loading: $loading, messageType: $messageType)';
+    return 'HomePageState(repositories: $repositories, loading: $loading, messageType: $messageType)';
   }
 
   @override
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$HomePagePageStateImpl &&
+            other is _$HomePageStateImpl &&
             const DeepCollectionEquality()
                 .equals(other._repositories, _repositories) &&
             (identical(other.loading, loading) || other.loading == loading) &&
@@ -165,21 +165,20 @@ class _$HomePagePageStateImpl implements _HomePagePageState {
   int get hashCode => Object.hash(runtimeType,
       const DeepCollectionEquality().hash(_repositories), loading, messageType);
 
-  /// Create a copy of HomePagePageState
+  /// Create a copy of HomePageState
   /// with the given fields replaced by the non-null parameter values.
   @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
-  _$$HomePagePageStateImplCopyWith<_$HomePagePageStateImpl> get copyWith =>
-      __$$HomePagePageStateImplCopyWithImpl<_$HomePagePageStateImpl>(
-          this, _$identity);
+  _$$HomePageStateImplCopyWith<_$HomePageStateImpl> get copyWith =>
+      __$$HomePageStateImplCopyWithImpl<_$HomePageStateImpl>(this, _$identity);
 }
 
-abstract class _HomePagePageState implements HomePagePageState {
-  const factory _HomePagePageState(
+abstract class _HomePageState implements HomePageState {
+  const factory _HomePageState(
       {final List<Repository> repositories,
       final bool loading,
-      final MessageType messageType}) = _$HomePagePageStateImpl;
+      final MessageType messageType}) = _$HomePageStateImpl;
 
   @override
   List<Repository> get repositories;
@@ -188,10 +187,10 @@ abstract class _HomePagePageState implements HomePagePageState {
   @override
   MessageType get messageType;
 
-  /// Create a copy of HomePagePageState
+  /// Create a copy of HomePageState
   /// with the given fields replaced by the non-null parameter values.
   @override
   @JsonKey(includeFromJson: false, includeToJson: false)
-  _$$HomePagePageStateImplCopyWith<_$HomePagePageStateImpl> get copyWith =>
+  _$$HomePageStateImplCopyWith<_$HomePageStateImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

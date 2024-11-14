@@ -7,21 +7,21 @@ import 'package:hooks_riverpod/hooks_riverpod.dart';
 part 'home_page_controller.freezed.dart';
 
 @freezed
-class HomePagePageState with _$HomePagePageState {
-  const factory HomePagePageState({
+class HomePageState with _$HomePageState {
+  const factory HomePageState({
     @Default([]) List<Repository> repositories,
     @Default(false) bool loading,
     @Default(MessageType.enterRepositoryName) MessageType messageType,
-  }) = _HomePagePageState;
+  }) = _HomePageState;
 }
 
-final homePageProvider = StateNotifierProvider.autoDispose<
-    HomePagePageController, HomePagePageState>(
-  (ref) => HomePagePageController(),
+final homePageProvider =
+    StateNotifierProvider.autoDispose<HomePageController, HomePageState>(
+  (ref) => HomePageController(),
 );
 
-class HomePagePageController extends StateNotifier<HomePagePageState> {
-  HomePagePageController() : super(const HomePagePageState());
+class HomePageController extends StateNotifier<HomePageState> {
+  HomePageController() : super(const HomePageState());
 
   GithubRepositoryService service = GithubRepositoryService();
 
