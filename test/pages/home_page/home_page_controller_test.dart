@@ -24,13 +24,13 @@ void main() {
 
   setUp(() {
     mockService = MockGithubRepositoryService();
-    container = ProviderContainer(
-      overrides: [
-        homePageProvider.overrideWith(
-          (ref) => HomePagePageController()..service = mockService,
-        ),
-      ],
-    );
+container = ProviderContainer(
+  overrides: [
+    homePageProvider.overrideWith(
+      () => HomePageController()..service = mockService,
+    ),
+  ],
+);
   });
 
   tearDown(() {
