@@ -1,3 +1,4 @@
+# 株式会社ゆめみ　コーディングテスト課題
 # GitHub Repository Search
 
 GitHub Repository Searchは、キーワードで GitHub リポジトリを検索したり、スターや説明などの詳細を表示したり、リポジトリのGitHubページに移動したりできるシンプルなFlutterアプリケーションです。
